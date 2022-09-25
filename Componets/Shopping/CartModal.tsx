@@ -27,6 +27,7 @@ import {
   Container_Total_Cart,
   Image_Trash_Cart,
   Inputs_Details_Cart,
+  Scroll_Cart_Details,
   Titles_Detalle_Cart,
   Title_Input_Cart,
   Title_Table_Cart,
@@ -66,15 +67,18 @@ const CartModal = ({setModalVisible}: any) => {
       </Container_Detalle_Cart>
 
       <Container_Table_Cart>
-        <Title_Table_Cart>1</Title_Table_Cart>
-        <Titles_Detalle_Cart>Product1</Titles_Detalle_Cart>
-        <Titles_Detalle_Cart>$ 1.00</Titles_Detalle_Cart>
-        <Titles_Detalle_Cart>$ 1.00</Titles_Detalle_Cart>
-        <Trash_Cart>
-          <Image_Trash_Cart source={require('../Images/Controls/trash.png')} />
-        </Trash_Cart>
+        <Scroll_Cart_Details>
+          <Title_Table_Cart>1</Title_Table_Cart>
+          <Titles_Detalle_Cart>Product1</Titles_Detalle_Cart>
+          <Titles_Detalle_Cart>$ 1.00</Titles_Detalle_Cart>
+          <Titles_Detalle_Cart>$ 1.00</Titles_Detalle_Cart>
+          <Trash_Cart>
+            <Image_Trash_Cart
+              source={require('../Images/Controls/trash.png')}
+            />
+          </Trash_Cart>
+        </Scroll_Cart_Details>
       </Container_Table_Cart>
-      <hr />
 
       <Container_Total_Cart>
         <Title_Total_Cart_Text>Total: </Title_Total_Cart_Text>

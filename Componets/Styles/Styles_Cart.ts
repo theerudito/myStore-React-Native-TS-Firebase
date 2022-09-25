@@ -16,7 +16,14 @@ export const Titles_Detalle_Cart = styled.Text`
   color: black;
 `;
 
-export const Container_Table_Cart = styled.ScrollView`
+export const Scroll_Cart_Details = styled.ScrollView`
+  width: 100%;
+  height: 100%;
+  background-color: red;
+   
+`;
+
+export const Container_Table_Cart = styled.View`
   background-color: #f5f5f5;
   flex-direction: row;
   margin-top: 2px;
