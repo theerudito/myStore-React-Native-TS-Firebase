@@ -10,11 +10,3 @@ export const ContainerSVGWaves = styled.View`
   width: 100%;
   height: 20%;
 `;
-
-export const SVG_TOP = styled.View`
-  background-color: orange;
-`;
-
-export const SVGB_UTTON = styled.View`
-  background-color: orange;
-`;

@@ -11,12 +11,12 @@ import Svg, {
 
 const styles = StyleSheet.create({
   top: {
-    zIndex: 4,
+    zIndex: -1,
     marginTop: '-10%',
   },
   button: {
-    zIndex: 2,
-    marginTop: '-30%',
+    zIndex: -1,
+    marginTop: '-10%',
   },
 });
 
