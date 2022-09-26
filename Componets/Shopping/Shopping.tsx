@@ -22,6 +22,7 @@ import {
   ContainerHeader,
   ContainerKart_Sopping,
   ContainerShopping,
+  Container_Add_More,
   Container_Card_Body_Shopping,
   Container_Card_Pages,
   Container_Card_Shopping,
@@ -30,16 +31,18 @@ import {
   Image_Burger,
   Image_Card_Shopping,
   Image_Control_Store,
+  InputAdd,
   Input_Search_Sopping,
   Lupa_Search_Sopping,
   Scroll_Card_Shopping,
+  Text_Increment_Decrement,
   TitleShopping,
   Title_Description_Sopping,
   Title_Mark_Sopping,
   Title_Price_Sopping,
   Title_Product_Sopping,
   Title_Search_Sopping,
-  TouchableHighlight_Control_Store,
+  Touch_Control_Store,
 } from '../Styles/Styles_Shopping';
 import {ProductShoopping} from '../Helpers/InitialValues';
 import {getProducts} from '../Store/slices/products';
@@ -52,9 +55,8 @@ import CartModal from './CartModal';
 export const Shopping = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const {products = []} = useSelector((state: any) => state.products);
-  const {counter} = useSelector((state: any) => state.cart);
+  const {cart} = useSelector((state: any) => state.cart);
   const dispatch = useDispatch();
-  console.log(modalVisible);
 
   useEffect(() => {
     dispatch(getProducts(ProductShoopping));
@@ -82,16 +84,16 @@ export const Shopping = () => {
       {modalVisible ? <CartModal setModalVisible={setModalVisible} /> : null}
 
       <ContainerHeader>
-        <TouchableHighlight_Control_Store>
+        <Touch_Control_Store>
           <Image_Burger source={require('../Images/Controls/burger.png')} />
-        </TouchableHighlight_Control_Store>
+        </Touch_Control_Store>
 
         <TitleShopping>Shopping</TitleShopping>
 
-        <TouchableHighlight_Control_Store onPress={() => cartDetails()}>
-          <Cant_Kart_Sopping>{counter} </Cant_Kart_Sopping>
+        <Touch_Control_Store onPress={() => cartDetails()}>
+          <Cant_Kart_Sopping>{cart.length} </Cant_Kart_Sopping>
           <ImageKart_Sopping source={require('../Images/cart.png')} />
-        </TouchableHighlight_Control_Store>
+        </Touch_Control_Store>
       </ContainerHeader>
 
       <Container_Search_Sopping>
@@ -104,7 +106,7 @@ export const Shopping = () => {
         <Container_Card_Shopping>
           {products.map((item: any) => (
             <Container_Card_Body_Shopping key={item.id}>
-              <TouchableHighlight_Control_Store>
+              <Touch_Control_Store>
                 <Image_Card_Shopping source={item.image} />
                 <Title_Product_Sopping>
                   Name: {item.name}{' '}
@@ -116,31 +118,44 @@ export const Shopping = () => {
                 <Title_Price_Sopping>
                   Price: $ {item.price}{' '}
                 </Title_Price_Sopping>
+
+                <Container_Add_More>
+                  <Touch_Control_Store>
+                    <Text_Increment_Decrement>-</Text_Increment_Decrement>
+                  </Touch_Control_Store>
+
+                  <InputAdd placeholder="0" />
+
+                  <Touch_Control_Store>
+                    <Text_Increment_Decrement>+</Text_Increment_Decrement>
+                  </Touch_Control_Store>
+                </Container_Add_More>
+
                 <Button_Card_Shopping onPress={() => addToCart(1, item)}>
                   <Button_Card_Shopping_Text>
                     ADD TO CART
                   </Button_Card_Shopping_Text>
                 </Button_Card_Shopping>
-              </TouchableHighlight_Control_Store>
+              </Touch_Control_Store>
             </Container_Card_Body_Shopping>
           ))}
         </Container_Card_Shopping>
       </Scroll_Card_Shopping>
 
       <Container_Card_Pages>
-        <TouchableHighlight_Control_Store onPress={() => pageLeft()}>
+        <Touch_Control_Store onPress={() => pageLeft()}>
           <Image_Control_Store
             source={require('../Images/Controls/left.png')}
           />
-        </TouchableHighlight_Control_Store>
+        </Touch_Control_Store>
 
         <Card_Pages>Page: 1011</Card_Pages>
 
-        <TouchableHighlight_Control_Store onPress={() => pageRight()}>
+        <Touch_Control_Store onPress={() => pageRight()}>
           <Image_Control_Store
             source={require('../Images/Controls/right.png')}
           />
-        </TouchableHighlight_Control_Store>
+        </Touch_Control_Store>
       </Container_Card_Pages>
     </ContainerShopping>
   );

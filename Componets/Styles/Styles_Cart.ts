@@ -19,8 +19,6 @@ export const Titles_Detalle_Cart = styled.Text`
 export const Scroll_Cart_Details = styled.ScrollView`
   width: 100%;
   height: 100%;
-  background-color: red;
-   
 `;
 
 export const Container_Table_Cart = styled.View`
@@ -91,6 +89,7 @@ export const Button_Buy_Cart = styled.TouchableOpacity`
 
 export const Button_Buy_Cart_Text = styled.Text`
   color: white;
+  font-size: 20px;
 `;
 
 export const Trash_Cart = styled.TouchableOpacity`

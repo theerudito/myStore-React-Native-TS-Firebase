@@ -99,7 +99,7 @@ export const Scroll_Card_Shopping = styled.ScrollView`
 
 export const Container_Card_Body_Shopping = styled.View`
   background-color: #202124;
-  width: 45%;
+  width: 47%;
   height: 270px;
   border-radius: 10px;
   margin-top: 10px;
@@ -119,7 +119,7 @@ export const Title_Product_Sopping = styled.Text`
   align-self: center;
   overflow: hidden;
   width: 90%;
-  margin-top: 5px;
+  margin-top: -1px;
 `;
 export const Title_Mark_Sopping = styled(Title_Product_Sopping)``;
 export const Title_Description_Sopping = styled(Title_Product_Sopping)``;
@@ -133,7 +133,7 @@ export const Button_Card_Shopping = styled.TouchableOpacity`
   height: 30px;
   align-items: center;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 10px;
 `;
 
 export const Button_Card_Shopping_Text = styled.Text`
@@ -166,4 +166,26 @@ export const Image_Control_Store = styled.Image`
   resize-mode: contain;
 `;
 
-export const TouchableHighlight_Control_Store = styled.TouchableOpacity``;
+export const Touch_Control_Store = styled.TouchableOpacity``;
+
+export const Container_Add_More = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const Text_Increment_Decrement = styled.Text`
+  color: white;
+  width: 30px;
+  background-color: #0099ff;
+  align-items: center;
+  text-align: center;
+`;
+export const InputAdd = styled.TextInput`
+  background-color: #f5f5f5;
+  width: 40px;
+  height: 30px;
+  text-align: center;
+  font-size: 5px;
+  margin: 5px;
+`;
