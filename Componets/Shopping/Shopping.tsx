@@ -92,14 +92,14 @@ export const Shopping = () => {
 
         <Touch_Control_Store onPress={() => cartDetails()}>
           <Cant_Kart_Sopping>{cart.length} </Cant_Kart_Sopping>
-          <ImageKart_Sopping source={require('../Images/cart.png')} />
+          <ImageKart_Sopping source={require('../Images/Controls/cart.png')} />
         </Touch_Control_Store>
       </ContainerHeader>
 
       <Container_Search_Sopping>
         <Title_Search_Sopping>Seach: </Title_Search_Sopping>
         <Input_Search_Sopping placeholder="Searching" />
-        <Lupa_Search_Sopping source={require('../Images/lupa.png')} />
+        <Lupa_Search_Sopping source={require('../Images/Controls/lupa.png')} />
       </Container_Search_Sopping>
 
       <Scroll_Card_Shopping>

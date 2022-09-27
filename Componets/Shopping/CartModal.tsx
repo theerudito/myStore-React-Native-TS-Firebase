@@ -36,7 +36,12 @@ import {
   Trash_Cart,
 } from '../Styles/Styles_Cart';
 import {useSelector, useDispatch} from 'react-redux';
-import {getPayment, getTotal, removeCart} from '../Store/slices/cart';
+import {
+  getDetails,
+  getPayment,
+  getTotal,
+  removeCart,
+} from '../Store/slices/cart';
 
 const CartModal = ({setModalVisible}: any) => {
   const {
@@ -50,8 +55,6 @@ const CartModal = ({setModalVisible}: any) => {
     email: '',
     phone: '',
   });
-
-  console.log(payment);
 
   const handleOnChange = (e: any, name: string) => {
     setData_Payment({...data_Payment, [name]: e.nativeEvent.text});
@@ -72,9 +75,10 @@ const CartModal = ({setModalVisible}: any) => {
 
   const handleBuy = () => {
     if (cart.length > 0) {
-      dispatch(getPayment(data_Payment, ));
+      dispatch(getPayment(data_Payment));
       setData_Payment({name: '', email: '', phone: ''});
       Alert.alert('Compra realizada con exito');
+      dispatch(getDetails({payment, cart}));
     } else {
       Alert.alert('No hay productos en el carrito');
     }

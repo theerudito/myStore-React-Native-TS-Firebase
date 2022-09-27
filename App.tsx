@@ -1,6 +1,8 @@
 /* eslint-disable */
 
 import {Provider} from 'react-redux';
+import Auth from './Componets/Auth/Auth';
+import Home from './Componets/Home/Home';
 import {Shopping} from './Componets/Shopping/Shopping';
 import {store} from './Componets/Store';
 import {
@@ -17,6 +19,8 @@ const App = () => {
           <TopWave />
         </ContainerSVGWaves>
         <Shopping />
+        {/* <Home /> */}
+        {/* <Auth /> */}
         <ContainerSVGWaves>
           <ButtonWave />
         </ContainerSVGWaves>
