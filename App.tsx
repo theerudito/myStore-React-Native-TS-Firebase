@@ -2,6 +2,7 @@
 
 import {Provider} from 'react-redux';
 import Auth from './Componets/Auth/Auth';
+import Add_Client from './Componets/Client/Add_Client';
 import Clients from './Componets/Client/Clients';
 import Home from './Componets/Home/Home';
 import Add_Product from './Componets/Products/Add_Product';
@@ -26,7 +27,8 @@ const App = () => {
         {/* <Auth /> */}
         {/* <Clients  /> */}
         {/* <Products /> */}
-        <Add_Product />
+        {/* <Add_Product /> */}
+        <Add_Client />
         <ContainerSVGWaves>
           <ButtonWave />
         </ContainerSVGWaves>
