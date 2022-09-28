@@ -27,8 +27,8 @@ const App = () => {
         {/* <Auth /> */}
         {/* <Clients  /> */}
         {/* <Products /> */}
-        {/* <Add_Product /> */}
-        <Add_Client />
+        <Add_Product />
+        {/* <Add_Client /> */}
         <ContainerSVGWaves>
           <ButtonWave />
         </ContainerSVGWaves>
