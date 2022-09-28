@@ -71,7 +71,7 @@ export const Title_Search_Sopping = styled.Text``;
 
 export const Input_Search_Sopping = styled.TextInput`
   color: black;
-  background-color: #f5f5f5;
+ 
   width: 60%;
   border-radius: 10px;
   height: 40px;

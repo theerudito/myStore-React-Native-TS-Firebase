@@ -65,3 +65,24 @@ export const ProductShoopping = [
     image: require('../Images/products/mayonesa.png'),
   },
 ];
+
+export const Clientes_Data = [
+  {
+    id: 1,
+    name: 'Juan',
+    city: 'Bogota',
+    phone: '9999999',
+  },
+  {
+    id: 2,
+    name: 'Erudito',
+    city: 'Quito',
+    phone: '999999',
+  },
+  {
+    id: 3,
+    name: 'Jorge',
+    city: 'Peru',
+    phone: '999999',
+  },
+];

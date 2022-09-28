@@ -2,7 +2,10 @@
 
 import {Provider} from 'react-redux';
 import Auth from './Componets/Auth/Auth';
+import Clients from './Componets/Client/Clients';
 import Home from './Componets/Home/Home';
+import Add_Product from './Componets/Products/Add_Product';
+import Products from './Componets/Products/Products';
 import {Shopping} from './Componets/Shopping/Shopping';
 import {store} from './Componets/Store';
 import {
@@ -18,9 +21,12 @@ const App = () => {
         <ContainerSVGWaves>
           <TopWave />
         </ContainerSVGWaves>
-        <Shopping />
+        {/* <Shopping /> */}
         {/* <Home /> */}
         {/* <Auth /> */}
+        {/* <Clients  /> */}
+        {/* <Products /> */}
+        <Add_Product />
         <ContainerSVGWaves>
           <ButtonWave />
         </ContainerSVGWaves>
