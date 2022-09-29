@@ -51,6 +51,7 @@ import {ContainerSVGWaves} from '../Styles/StyleApp';
 import {ButtonWave, TopWave} from '../SVG/Waves';
 import {AddCart, addCounter} from '../Store/slices/cart';
 import CartModal from './CartModal';
+import Componet_Seach from '../Header/Componet_Seach';
 
 export const Shopping = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -96,11 +97,13 @@ export const Shopping = () => {
         </Touch_Control_Store>
       </ContainerHeader>
 
-      <Container_Search_Sopping>
+      {/* <Container_Search_Sopping>
         <Title_Search_Sopping>Seach: </Title_Search_Sopping>
         <Input_Search_Sopping placeholder="Searching" />
         <Lupa_Search_Sopping source={require('../Images/Controls/lupa.png')} />
-      </Container_Search_Sopping>
+      </Container_Search_Sopping> */}
+
+      <Componet_Seach />
 
       <Scroll_Card_Shopping>
         <Container_Card_Shopping>

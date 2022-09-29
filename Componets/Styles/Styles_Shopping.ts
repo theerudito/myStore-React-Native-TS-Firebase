@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 export const ContainerShopping = styled.View`
   background-color: white;
   width: 100%;
-  height: 70%;
+  height: 95%;
 `;
 
 export const ContainerBurger = styled.View``;
@@ -17,7 +17,7 @@ export const Image_Burger = styled.Image`
 `;
 
 export const ContainerHeader = styled.View`
-  margin-top: -90px;
+  margin-top: 15px;
   width: 100%;
   height: 10%;
   flex-direction: row;
@@ -71,7 +71,7 @@ export const Title_Search_Sopping = styled.Text``;
 
 export const Input_Search_Sopping = styled.TextInput`
   color: black;
- 
+  background-color: #f5f5f5;
   width: 60%;
   border-radius: 10px;
   height: 40px;

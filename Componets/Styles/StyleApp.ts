@@ -8,5 +8,6 @@ export const ContainerPrincipalPage = styled.View`
 `;
 export const ContainerSVGWaves = styled.View`
   width: 100%;
-  height: 20%;
+  height: 10%;
+  background-color: red;
 `;
