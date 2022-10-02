@@ -16,8 +16,6 @@ import {
 import Header from '../Header/Header';
 
 const Add_Product = () => {
-  const title = 'Add Product';
-
   return (
     <Container_Add_Product>
       <Image_Product source={require('../Images/Controls//image.png')} />

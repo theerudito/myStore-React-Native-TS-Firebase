@@ -1,6 +1,5 @@
 /* eslint-disable */
 
-import {View, Text} from 'react-native';
 import React from 'react';
 import {Container_Products} from '../Styles/Styles_Products';
 import Header from '../Header/Header';
