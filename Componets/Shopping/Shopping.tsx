@@ -50,11 +50,12 @@ import {getProducts} from '../Store/slices/products';
 import {ContainerSVGWaves} from '../Styles/StyleApp';
 import {ButtonWave, TopWave} from '../SVG/Waves';
 import {AddCart, addCounter} from '../Store/slices/cart';
-import CartModal from './CartModal';
+import CartModal from './Cart';
 import Componet_Seach from '../Header/Componet_Seach';
 
-export const Shopping = () => {
-  const [modalVisible, setModalVisible] = useState(false);
+export const Shopping = ({navigation}) => {
+  console.log(navigation);
+
   const {products = []} = useSelector((state: any) => state.products);
   const {cart} = useSelector((state: any) => state.cart);
   const dispatch = useDispatch();
@@ -68,10 +69,6 @@ export const Shopping = () => {
     dispatch(AddCart(item));
   };
 
-  const cartDetails = () => {
-    setModalVisible(true);
-  };
-
   const pageLeft = () => {
     console.log('pageLeft');
   };
@@ -80,10 +77,12 @@ export const Shopping = () => {
     console.log('pageRight');
   };
 
+  const cartDetails = () => {
+    navigation.navigate('CartModal');
+  };
+
   return (
     <ContainerShopping>
-      {modalVisible ? <CartModal setModalVisible={setModalVisible} /> : null}
-
       <ContainerHeader>
         <Touch_Control_Store>
           <Image_Burger source={require('../Images/Controls/burger.png')} />

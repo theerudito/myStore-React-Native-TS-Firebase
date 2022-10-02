@@ -43,7 +43,7 @@ import {
   removeCart,
 } from '../Store/slices/cart';
 
-const CartModal = ({setModalVisible}: any) => {
+const Cart = () => {
   const {
     cart = [],
     total,
@@ -60,9 +60,7 @@ const CartModal = ({setModalVisible}: any) => {
     setData_Payment({...data_Payment, [name]: e.nativeEvent.text});
   };
 
-  const closeModal = () => {
-    setModalVisible(false);
-  };
+  const closeModal = () => {};
 
   useEffect(() => {
     dispatch(getTotal(0));
@@ -84,7 +82,7 @@ const CartModal = ({setModalVisible}: any) => {
     }
   };
   return (
-    <Modal visible={setModalVisible(true)}>
+    <View>
       <ContainerSVGWaves>
         <TopWave />
       </ContainerSVGWaves>
@@ -163,8 +161,8 @@ const CartModal = ({setModalVisible}: any) => {
       <ContainerSVGWaves>
         <ButtonWave />
       </ContainerSVGWaves>
-    </Modal>
+    </View>
   );
 };
 
-export default CartModal;
+export default Cart;
