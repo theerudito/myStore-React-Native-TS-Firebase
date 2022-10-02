@@ -19,7 +19,7 @@ export const Image_Auth = styled.Image`
   width: 80%;
   height: 80%;
   resize-mode: contain;
-  margin-top: -40px;
+  margin-top: 100px;
 `;
 
 export const Image_Google_in = styled.Image`

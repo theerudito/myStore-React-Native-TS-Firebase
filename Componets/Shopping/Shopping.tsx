@@ -51,11 +51,14 @@ import {ContainerSVGWaves} from '../Styles/StyleApp';
 import {ButtonWave, TopWave} from '../SVG/Waves';
 import {AddCart, addCounter} from '../Store/slices/cart';
 import CartModal from './Cart';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {NavigationContainer} from '@react-navigation/native';
 import Componet_Seach from '../Header/Componet_Seach';
+import Cart from './Cart';
+
+const Stack = createNativeStackNavigator();
 
 export const Shopping = ({navigation}) => {
-  console.log(navigation);
-
   const {products = []} = useSelector((state: any) => state.products);
   const {cart} = useSelector((state: any) => state.cart);
   const dispatch = useDispatch();
@@ -78,7 +81,7 @@ export const Shopping = ({navigation}) => {
   };
 
   const cartDetails = () => {
-    navigation.navigate('CartModal');
+    navigation.navigate('Cart');
   };
 
   return (

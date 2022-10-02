@@ -10,14 +10,12 @@ import {
   Touch_Control,
 } from '../Styles/Styles_Header';
 
-const Header = ({title}: string) => {
+const Header = () => {
   return (
     <Container_Header>
       <Touch_Control>
         <Image_Burger source={require('../Images/Controls/burger.png')} />
       </Touch_Control>
-
-      <Title_Header>{title} </Title_Header>
 
       <Touch_Control>
         <Image_Back source={require('../Images/Controls/back.png')} />

@@ -4,11 +4,12 @@ import styled from 'styled-components/native';
 export const Container_Add_Clients = styled.View`
   width: 100%;
   height: 80%;
-  margin-top: -90px;
+  margin-top: 90px;
+  background-color: #fff;
 `;
 
 export const Container_Inputs_Client = styled.View`
-margin-top: 70px;
+  margin-top: 70px;
 `;
 
 export const Input_Client = styled.TextInput`

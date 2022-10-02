@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 export const Container_Add_Product = styled.View`
   width: 100%;
   height: 80%;
-  margin-top: -90px;
+  margin-top: 90px;
 `;
 
 export const Image_Product = styled.Image`

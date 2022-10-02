@@ -12,11 +12,8 @@ import {
 import Header from '../Header/Header';
 
 const Add_Client = () => {
-  const title = 'Add Client';
   return (
     <Container_Add_Clients>
-      <Header title={title} />
-
       <Container_Inputs_Client>
         <Input_Client placeholder="Name" />
         <Input_Client placeholder="Direction" />

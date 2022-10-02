@@ -21,6 +21,7 @@ import {
 import {
   Button_Buy_Cart,
   Button_Buy_Cart_Text,
+  Container_Cart,
   Container_Details_Infor_Cart,
   Container_Detalle_Cart,
   Container_Table_Cart,
@@ -43,7 +44,7 @@ import {
   removeCart,
 } from '../Store/slices/cart';
 
-const Cart = () => {
+const Cart = ({navigation}) => {
   const {
     cart = [],
     total,
@@ -60,7 +61,9 @@ const Cart = () => {
     setData_Payment({...data_Payment, [name]: e.nativeEvent.text});
   };
 
-  const closeModal = () => {};
+  const closeModal = () => {
+    navigation.navigate('Home');
+  };
 
   useEffect(() => {
     dispatch(getTotal(0));
@@ -82,12 +85,8 @@ const Cart = () => {
     }
   };
   return (
-    <View>
-      <ContainerSVGWaves>
-        <TopWave />
-      </ContainerSVGWaves>
-
-      <ContainerHeader>
+    <Container_Cart>
+      {/* <ContainerHeader>
         <Touch_Control_Store>
           <Image_Burger source={require('../Images/Controls/burger.png')} />
         </Touch_Control_Store>
@@ -97,7 +96,7 @@ const Cart = () => {
         <Touch_Control_Store onPress={() => closeModal()}>
           <ImageKart_Sopping source={require('../Images/Controls/back.png')} />
         </Touch_Control_Store>
-      </ContainerHeader>
+      </ContainerHeader> */}
 
       <Container_Detalle_Cart>
         <Titles_Detalle_Cart>Cant</Titles_Detalle_Cart>
@@ -157,11 +156,7 @@ const Cart = () => {
       <Button_Buy_Cart onPress={() => handleBuy()}>
         <Button_Buy_Cart_Text>TO BUY</Button_Buy_Cart_Text>
       </Button_Buy_Cart>
-
-      <ContainerSVGWaves>
-        <ButtonWave />
-      </ContainerSVGWaves>
-    </View>
+    </Container_Cart>
   );
 };
 

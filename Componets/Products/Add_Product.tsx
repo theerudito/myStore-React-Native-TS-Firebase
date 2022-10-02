@@ -20,8 +20,6 @@ const Add_Product = () => {
 
   return (
     <Container_Add_Product>
-      <Header title={title} />
-
       <Image_Product source={require('../Images/Controls//image.png')} />
 
       <Container_Inputs_Product>

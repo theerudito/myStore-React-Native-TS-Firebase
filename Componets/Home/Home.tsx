@@ -27,12 +27,12 @@ const Home = ({navigation}: any) => {
 
   return (
     <Container_Home>
-      <Container_Home_Header>
+      {/* <Container_Home_Header>
         <Touch_Control_Store onPress={handleBurger}>
           <Image_Burger source={require('../Images/Controls/burger.png')} />
         </Touch_Control_Store>
         <Container_Home_Header_Title>MY STORE</Container_Home_Header_Title>
-      </Container_Home_Header>
+      </Container_Home_Header> */}
 
       <ContainerBody_Home>
         <Image_User source={require('../Images/Controls/avatar.png')} />
