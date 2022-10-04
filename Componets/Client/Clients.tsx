@@ -1,15 +1,13 @@
 /* eslint-disable */
 
 import React from 'react';
-import {Container_Clients, Touch_Add_Client} from '../Styles/Styles_Clients';
-import Header from '../Header/Header';
+import {Container_Clients} from '../Styles/Styles_Clients';
 import Componet_Seach from '../Header/Componet_Seach';
 import Table from '../Reposts/Table';
 
-const Clients = ({navigation}) => {
-
+const Clients = ({navigation}: any) => {
   const image = require('../Images/Controls/add.png');
-  
+
   const handle_Add_Client = () => {
     navigation.navigate('Add_Clients');
   };

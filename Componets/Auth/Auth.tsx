@@ -18,9 +18,9 @@ const Auth = () => {
       <Touch_Auth>
         <Image_Google_in source={require('../Images/Controls/google_in.png')} />
       </Touch_Auth>
-      <Touch_Auth>
+      {/* <Touch_Auth>
         <Image_Google_up source={require('../Images/Controls/google_up.png')} />
-      </Touch_Auth>
+      </Touch_Auth> */}
     </Container_Auth>
   );
 };

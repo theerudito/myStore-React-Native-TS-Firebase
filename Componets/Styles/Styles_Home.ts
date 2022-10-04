@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 
 export const Container_Home = styled.View`
   width: 100%;
-  height: 40%;
+  height: 100%;
   background-color: white;
 `;
 
@@ -11,7 +11,6 @@ export const Container_Home_Header = styled.View`
   width: 100%;
   height: 20%;
   flex-direction: row;
-  margin-top: -10px;
 `;
 
 export const Container_Home_Header_Title = styled.Text`
@@ -36,7 +35,7 @@ export const Image_Home = styled.Image`
   width: 60%;
   height: 60%;
   resize-mode: contain;
-  margin-top: 40px;
+  margin-top: 50px;
   
 `;
 
@@ -45,12 +44,12 @@ export const Image_User = styled.Image`
   width: 20%;
   height: 20%;
   resize-mode: contain;
-  margin-top: 30px;
+  margin-top: 20px;
 `;
 
 export const Title_Home_Developer = styled.Text`
   align-self: center;
-  margin-top: 30px;
+  margin-top: -30px;
 `;
 
 export const Title_Home_Version = styled.Text`

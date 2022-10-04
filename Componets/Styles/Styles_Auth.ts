@@ -3,7 +3,8 @@ import styled from 'styled-components/native';
 
 export const Container_Auth = styled.View`
   width: 100%;
-  height: 70%;
+  height: 100%;
+  background-color: #fff;
 `;
 
 export const Title_Auth = styled.Text`
@@ -19,7 +20,7 @@ export const Image_Auth = styled.Image`
   width: 80%;
   height: 80%;
   resize-mode: contain;
-  margin-top: 100px;
+  margin-top: -10px;
 `;
 
 export const Image_Google_in = styled.Image`

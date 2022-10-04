@@ -7,16 +7,6 @@ export const ContainerShopping = styled.View`
   height: 95%;
 `;
 
-export const ContainerBurger = styled.View``;
-
-export const Image_Burger = styled.Image`
-  width: 40px;
-  height: 50px;
-  align-self: center;
-  justify-content: center;
-  resize-mode: contain;
-`;
-
 export const ContainerHeader = styled.View`
   align-items: center;
   width: 15%;
@@ -25,23 +15,6 @@ export const ContainerHeader = styled.View`
   left: 20%;
   margin-top: 10px;
   margin-left: 250px;
-`;
-
-export const TitleShopping = styled.Text`
-  color: black;
-  font-size: 20px;
-  align-self: center;
-`;
-
-export const CartOpacity = styled.TouchableOpacity``;
-
-export const ContainerKart_Sopping = styled.View`
-  flex-direction: row;
-  margin-left: auto;
-  margin-right: 10px;
-  align-items: center;
-  justify-content: center;
-  background-color: green;
 `;
 
 export const Cant_Kart_Sopping = styled.Text`
@@ -60,30 +33,6 @@ export const ImageKart_Sopping = styled.Image`
   width: 50px;
   height: 50px;
   margin-top: -10px;
-`;
-
-export const Container_Search_Sopping = styled.View`
-  flex-direction: row;
-  align-items: center;
-  margin-left: auto;
-  margin-right: 10px;
-`;
-
-export const Title_Search_Sopping = styled.Text``;
-
-export const Input_Search_Sopping = styled.TextInput`
-  color: black;
-  background-color: #f5f5f5;
-  width: 60%;
-  border-radius: 10px;
-  height: 40px;
-`;
-
-export const Lupa_Search_Sopping = styled.Image`
-  width: 30px;
-  height: 30px;
-  margin-left: 240px;
-  position: absolute;
 `;
 
 export const Container_Card_Shopping = styled.View`

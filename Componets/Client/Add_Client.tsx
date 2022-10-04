@@ -1,6 +1,5 @@
 /* eslint-disable */
 
-import {View, Text} from 'react-native';
 import React from 'react';
 import {
   Button_Client_Control,
@@ -9,7 +8,6 @@ import {
   Input_Client,
   Text_Button_Client,
 } from '../Styles/Styles_Add_Client';
-import Header from '../Header/Header';
 
 const Add_Client = () => {
   return (

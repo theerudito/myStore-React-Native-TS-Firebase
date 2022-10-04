@@ -2,11 +2,10 @@
 
 import React from 'react';
 import {Container_Products} from '../Styles/Styles_Products';
-import Header from '../Header/Header';
 import Componet_Seach from '../Header/Componet_Seach';
 import Table from '../Reposts/Table';
 
-const Products = ({navigation}) => {
+const Products = ({navigation}: any) => {
   const image = require('../Images/Controls/add-product.png');
 
   const handle_Add_Product = () => {

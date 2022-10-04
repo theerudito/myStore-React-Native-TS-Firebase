@@ -1,6 +1,5 @@
 /* eslint-disable */
 
-import {View, Text} from 'react-native';
 import React from 'react';
 import {
   Button_Product_Control,
@@ -13,7 +12,6 @@ import {
   Input_Product_3,
   Text_Button_Product,
 } from '../Styles/Styles_Add_Product';
-import Header from '../Header/Header';
 
 const Add_Product = () => {
   return (

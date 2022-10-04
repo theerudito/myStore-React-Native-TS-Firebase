@@ -1,24 +1,9 @@
 /* eslint-disable */
-import {
-  Alert,
-  Modal,
-  StyleSheet,
-  Text,
-  Pressable,
-  View,
-  TouchableOpacity,
-  ScrollView,
-} from 'react-native';
+
 import React, {useEffect, useState} from 'react';
 import {ContainerSVGWaves} from '../Styles/StyleApp';
 import {ButtonWave, TopWave} from '../SVG/Waves';
-import {
-  ContainerHeader,
-  ImageKart_Sopping,
-  Image_Burger,
-  TitleShopping,
-  Touch_Control_Store,
-} from '../Styles/Styles_Shopping';
+
 import {
   Button_Buy_Cart,
   Button_Buy_Cart_Text,
@@ -45,7 +30,7 @@ import {
   removeCart,
 } from '../Store/slices/cart';
 
-const Cart = ({navigation}) => {
+const Cart = ({navigation}: any) => {
   const {
     cart = [],
     total,
@@ -87,18 +72,6 @@ const Cart = ({navigation}) => {
   };
   return (
     <Container_Cart>
-      {/* <ContainerHeader>
-        <Touch_Control_Store>
-          <Image_Burger source={require('../Images/Controls/burger.png')} />
-        </Touch_Control_Store>
-
-        <TitleShopping>Cart</TitleShopping>
-
-        <Touch_Control_Store onPress={() => closeModal()}>
-          <ImageKart_Sopping source={require('../Images/Controls/back.png')} />
-        </Touch_Control_Store>
-      </ContainerHeader> */}
-
       <Container_Detalle_Cart>
         <Titles_Detalle_Cart>Cant</Titles_Detalle_Cart>
         <Titles_Detalle_Cart>Details</Titles_Detalle_Cart>
