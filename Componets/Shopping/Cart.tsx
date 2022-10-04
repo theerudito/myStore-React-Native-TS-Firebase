@@ -7,6 +7,7 @@ import {
   Pressable,
   View,
   TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {ContainerSVGWaves} from '../Styles/StyleApp';
@@ -106,23 +107,25 @@ const Cart = ({navigation}) => {
         <Titles_Detalle_Cart>Actions</Titles_Detalle_Cart>
       </Container_Detalle_Cart>
 
-      {cart.map((item: any) => {
-        return (
-          <Container_Table_Cart key={item.id}>
-            <Title_Table_Cart>{item.quantity}</Title_Table_Cart>
-            <Title_Table_Cart>{item.name}</Title_Table_Cart>
-            <Title_Table_Cart>{item.price.toFixed(2)}</Title_Table_Cart>
-            <Title_Table_Cart>
-              {(item.price * item.quantity).toFixed(2)}
-            </Title_Table_Cart>
-            <Trash_Cart onPress={() => handleDelete(item.id)}>
-              <Image_Trash_Cart
-                source={require('../Images/Controls/trash.png')}
-              />
-            </Trash_Cart>
-          </Container_Table_Cart>
-        );
-      })}
+      <Scroll_Cart_Details>
+        {cart.map((item: any) => {
+          return (
+            <Container_Table_Cart key={item.id}>
+              <Title_Table_Cart>{item.quantity}</Title_Table_Cart>
+              <Title_Table_Cart>{item.name}</Title_Table_Cart>
+              <Title_Table_Cart>{item.price.toFixed(2)}</Title_Table_Cart>
+              <Title_Table_Cart>
+                {(item.price * item.quantity).toFixed(2)}
+              </Title_Table_Cart>
+              <Trash_Cart onPress={() => handleDelete(item.id)}>
+                <Image_Trash_Cart
+                  source={require('../Images/Controls/trash.png')}
+                />
+              </Trash_Cart>
+            </Container_Table_Cart>
+          );
+        })}
+      </Scroll_Cart_Details>
 
       <Container_Total_Cart>
         <Title_Total_Cart_Text>Total: </Title_Total_Cart_Text>
@@ -151,11 +154,11 @@ const Cart = ({navigation}) => {
           value={data_Payment.phone}
           onChange={e => handleOnChange(e, 'phone')}
         />
-      </Container_Details_Infor_Cart>
 
-      <Button_Buy_Cart onPress={() => handleBuy()}>
-        <Button_Buy_Cart_Text>TO BUY</Button_Buy_Cart_Text>
-      </Button_Buy_Cart>
+        <Button_Buy_Cart onPress={() => handleBuy()}>
+          <Button_Buy_Cart_Text>TO BUY</Button_Buy_Cart_Text>
+        </Button_Buy_Cart>
+      </Container_Details_Infor_Cart>
     </Container_Cart>
   );
 };

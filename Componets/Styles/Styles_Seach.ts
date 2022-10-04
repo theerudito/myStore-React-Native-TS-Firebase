@@ -33,7 +33,7 @@ export const Input_Search = styled.TextInput`
 export const Image_Search = styled.Image`
   width: 30px;
   height: 30px;
-  margin-left: 350px;
+  margin-left: 340px;
   position: absolute;
   z-index: 999;
 `;

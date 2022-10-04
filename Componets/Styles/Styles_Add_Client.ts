@@ -5,7 +5,7 @@ export const Container_Add_Clients = styled.View`
   width: 100%;
   height: 80%;
   margin-top: 90px;
-  background-color: #fff;
+  background-color: white;
 `;
 
 export const Container_Inputs_Client = styled.View`

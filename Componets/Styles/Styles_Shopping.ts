@@ -12,17 +12,19 @@ export const ContainerBurger = styled.View``;
 export const Image_Burger = styled.Image`
   width: 40px;
   height: 50px;
-  margin-left: 10px;
+  align-self: center;
+  justify-content: center;
   resize-mode: contain;
 `;
 
 export const ContainerHeader = styled.View`
-  margin-top: 15px;
-  width: 100%;
-  height: 10%;
-  flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  width: 15%;
+  height: 10%;
+  justify-content: center;
+  left: 20%;
+  margin-top: 10px;
+  margin-left: 250px;
 `;
 
 export const TitleShopping = styled.Text`
@@ -39,6 +41,7 @@ export const ContainerKart_Sopping = styled.View`
   margin-right: 10px;
   align-items: center;
   justify-content: center;
+  background-color: green;
 `;
 
 export const Cant_Kart_Sopping = styled.Text`
@@ -50,14 +53,13 @@ export const Cant_Kart_Sopping = styled.Text`
   text-align: center;
   align-items: center;
   margin-left: 15px;
-  margin-top: -15px;
+  margin-top: 10px;
 `;
 
 export const ImageKart_Sopping = styled.Image`
   width: 50px;
   height: 50px;
-  margin-right: 15px;
-  margin-top: -15px;
+  margin-top: -10px;
 `;
 
 export const Container_Search_Sopping = styled.View`
@@ -181,11 +183,11 @@ export const Text_Increment_Decrement = styled.Text`
   align-items: center;
   text-align: center;
 `;
-export const InputAdd = styled.TextInput`
-  background-color: #f5f5f5;
-  width: 40px;
-  height: 30px;
+export const Text_Cant_Product = styled.Text`
+  color: white;
+  width: 30px;
+  background-color: white;
+  align-items: center;
   text-align: center;
-  font-size: 5px;
-  margin: 5px;
+  color: black;
 `;

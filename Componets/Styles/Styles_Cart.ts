@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 export const Container_Cart = styled.View`
   background-color: #fff;
   width: 100%;
-  height: 90%;
+  height: 100%;
 `;
 
 export const Container_Detalle_Cart = styled.View`
@@ -26,6 +26,7 @@ export const Titles_Detalle_Cart = styled.Text`
 export const Scroll_Cart_Details = styled.ScrollView`
   width: 100%;
   height: 20%;
+  margin-top: 10px;
 `;
 
 export const Container_Table_Cart = styled.View`
@@ -33,7 +34,7 @@ export const Container_Table_Cart = styled.View`
   flex-direction: row;
   margin-top: 2px;
   width: 95%;
-  height: 4%;
+  height: 40px;
   align-items: center;
   justify-content: space-between;
   margin-left: 10px;
@@ -67,7 +68,7 @@ export const Title_Total_Cart = styled.Text`
 export const Container_Details_Infor_Cart = styled.View`
   align-self: center;
   width: 100%;
-  height: 70%;
+  height: 50%;
   margin-top: 10px;
   padding: 10px;
 `;
@@ -92,7 +93,8 @@ export const Button_Buy_Cart = styled.TouchableOpacity`
   width: 50%;
   height: 40px;
   align-self: center;
-  margin-top: -80px;
+  margin-button: 100px;
+  margin-top: 100px;
 `;
 
 export const Button_Buy_Cart_Text = styled.Text`
@@ -108,5 +110,5 @@ export const Trash_Cart = styled.TouchableOpacity`
 export const Image_Trash_Cart = styled.Image`
   width: 40px;
   height: 60px;
-  margin-top: 15px;
+  margin-top: 30px;
 `;

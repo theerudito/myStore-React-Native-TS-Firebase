@@ -5,6 +5,7 @@ export const Container_Add_Product = styled.View`
   width: 100%;
   height: 80%;
   margin-top: 90px;
+  background-color: white;
 `;
 
 export const Image_Product = styled.Image`
@@ -34,7 +35,6 @@ export const ContainerInput2_Product = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  
 `;
 
 export const Input_Product_2 = styled.TextInput`
