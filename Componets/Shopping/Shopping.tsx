@@ -33,6 +33,8 @@ import {ButtonWave, TopWave} from '../SVG/Waves';
 import {AddCart, addCounter, getTotal} from '../Store/slices/cart';
 
 import Componet_Seach from '../Header/Componet_Seach';
+import {FlatList} from 'react-native';
+import Shooping_Card from './Shooping_Card';
 
 export const Shopping = ({navigation}: any) => {
   const {products = []} = useSelector((state: any) => state.products);
@@ -72,39 +74,13 @@ export const Shopping = ({navigation}: any) => {
 
       <Componet_Seach />
 
-      <Scroll_Card_Shopping>
-        <Container_Card_Shopping>
-          {products.map((item: any) => (
-            <Container_Card_Body_Shopping key={item.id}>
-              <Image_Card_Shopping source={item.image} />
-              <Title_Product_Sopping>Name: {item.name} </Title_Product_Sopping>
-              <Title_Mark_Sopping>Brand: {item.brand} </Title_Mark_Sopping>
-              <Title_Description_Sopping>
-                Desc: {item.description}
-              </Title_Description_Sopping>
-              <Title_Price_Sopping>Price: $ {item.price} </Title_Price_Sopping>
-
-              <Container_Add_More>
-                <Touch_Control_Store>
-                  <Text_Increment_Decrement>-</Text_Increment_Decrement>
-                </Touch_Control_Store>
-
-                <Text_Cant_Product>10</Text_Cant_Product>
-
-                <Touch_Control_Store>
-                  <Text_Increment_Decrement>+</Text_Increment_Decrement>
-                </Touch_Control_Store>
-              </Container_Add_More>
-
-              <Button_Card_Shopping onPress={() => addToCart(1, item)}>
-                <Button_Card_Shopping_Text>
-                  ADD TO CART
-                </Button_Card_Shopping_Text>
-              </Button_Card_Shopping>
-            </Container_Card_Body_Shopping>
-          ))}
-        </Container_Card_Shopping>
-      </Scroll_Card_Shopping>
+      <FlatList
+        data={products}
+        keyExtractor={item => item.id}
+        renderItem={({item}) => (
+          <Shooping_Card item={item} addToCart={addToCart} />
+        )}
+      />
 
       <Container_Card_Pages>
         <Touch_Control_Store onPress={() => pageLeft()}>

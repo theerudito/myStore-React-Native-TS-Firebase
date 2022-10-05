@@ -112,3 +112,8 @@ export const Image_Trash_Cart = styled.Image`
   height: 60px;
   margin-top: 30px;
 `;
+
+export const Title_Details_Cart = styled.Text`
+  color: black;
+  padding_left: 40px;
+`;

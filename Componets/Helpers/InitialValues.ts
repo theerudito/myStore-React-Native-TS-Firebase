@@ -2,6 +2,7 @@
 export const ProductShoopping = [
   {
     id: 1,
+    cant: 1,
     name: 'Coca Cola',
     price: 1.5,
     brand: 'Coca Cola',
@@ -10,6 +11,7 @@ export const ProductShoopping = [
   },
   {
     id: 2,
+    cant: 1,
     name: 'Aceite',
     price: 4.5,
     brand: 'La Campesina',
@@ -18,6 +20,7 @@ export const ProductShoopping = [
   },
   {
     id: 3,
+    cant: 0,
     name: 'Oreo',
     price: 1.5,
     brand: 'Oreo',
@@ -26,6 +29,7 @@ export const ProductShoopping = [
   },
   {
     id: 4,
+    cant: 3,
     name: 'doritos',
     price: 0.5,
     brand: 'Nido',
@@ -34,6 +38,7 @@ export const ProductShoopping = [
   },
   {
     id: 5,
+    cant: 5,
     name: 'Supan',
     price: 2.0,
     brand: 'Integral',
@@ -42,6 +47,7 @@ export const ProductShoopping = [
   },
   {
     id: 6,
+    cant: 4,
     name: 'Fantas',
     price: 1.25,
     brand: 'Coca Cola',
@@ -50,6 +56,7 @@ export const ProductShoopping = [
   },
   {
     id: 7,
+    cant: 7,
     name: 'Arroz',
     price: 0.75,
     brand: 'Gustadina',
@@ -58,6 +65,7 @@ export const ProductShoopping = [
   },
   {
     id: 8,
+    cant: 11,
     name: 'Mayonesa',
     price: 1.25,
     brand: 'Pronaca',
@@ -84,5 +92,64 @@ export const Clientes_Data = [
     name: 'Jorge',
     city: 'Peru',
     phone: '999999',
+  },
+];
+
+export const Clientes_Docu = [
+  {
+    id: 1,
+    name: 'Juan',
+    date: '2020-10-10',
+    total: '100',
+    doc: '9999999',
+  },
+  {
+    id: 2,
+    name: 'Sebastian',
+    date: '2020-10-10',
+    total: '10',
+    doc: '9999999',
+  },
+  {
+    id: 3,
+    name: 'Juan',
+    date: '2020-10-10',
+    total: '125',
+    doc: '9999999',
+  },
+  {
+    id: 4,
+    name: 'Juan',
+    date: '2020-10-10',
+    total: '30',
+    doc: '9999999',
+  },
+  {
+    id: 5,
+    name: 'Mateo',
+    date: '2020-10-10',
+    total: '13',
+    doc: '9999999',
+  },
+  {
+    id: 6,
+    name: 'Pedro',
+    date: '2020-10-10',
+    total: '12',
+    doc: '9999999',
+  },
+  {
+    id: 7,
+    name: 'Pedro',
+    date: '2020-10-10',
+    total: '100',
+    doc: '9999999',
+  },
+  {
+    id: 8,
+    name: 'Maria',
+    date: '2020-10-10',
+    total: '100',
+    doc: '9999999',
   },
 ];

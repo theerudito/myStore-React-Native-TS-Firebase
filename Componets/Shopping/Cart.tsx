@@ -10,17 +10,13 @@ import {
   Container_Cart,
   Container_Details_Infor_Cart,
   Container_Detalle_Cart,
-  Container_Table_Cart,
   Container_Total_Cart,
-  Image_Trash_Cart,
   Inputs_Details_Cart,
-  Scroll_Cart_Details,
   Titles_Detalle_Cart,
+  Title_Details_Cart,
   Title_Input_Cart,
-  Title_Table_Cart,
   Title_Total_Cart,
   Title_Total_Cart_Text,
-  Trash_Cart,
 } from '../Styles/Styles_Cart';
 import {useSelector, useDispatch} from 'react-redux';
 import {
@@ -29,6 +25,9 @@ import {
   getTotal,
   removeCart,
 } from '../Store/slices/cart';
+import {FlatList} from 'react-native';
+import Details_Cart from './Details_Cart';
+import {Text} from 'react-native';
 
 const Cart = ({navigation}: any) => {
   const {
@@ -36,7 +35,9 @@ const Cart = ({navigation}: any) => {
     total,
     payment = [],
   } = useSelector((state: any) => state.cart);
+
   const dispatch = useDispatch();
+
   const [data_Payment, setData_Payment] = useState({
     name: '',
     email: '',
@@ -45,10 +46,6 @@ const Cart = ({navigation}: any) => {
 
   const handleOnChange = (e: any, name: string) => {
     setData_Payment({...data_Payment, [name]: e.nativeEvent.text});
-  };
-
-  const closeModal = () => {
-    navigation.navigate('Home');
   };
 
   useEffect(() => {
@@ -64,10 +61,10 @@ const Cart = ({navigation}: any) => {
     if (cart.length > 0) {
       dispatch(getPayment(data_Payment));
       setData_Payment({name: '', email: '', phone: ''});
-      Alert.alert('Compra realizada con exito');
+      alert('Compra realizada con exito');
       dispatch(getDetails({payment, cart}));
     } else {
-      Alert.alert('No hay productos en el carrito');
+      alert('No hay productos en el carrito');
     }
   };
   return (
@@ -80,30 +77,20 @@ const Cart = ({navigation}: any) => {
         <Titles_Detalle_Cart>Actions</Titles_Detalle_Cart>
       </Container_Detalle_Cart>
 
-      <Scroll_Cart_Details>
-        {cart.map((item: any) => {
-          return (
-            <Container_Table_Cart key={item.id}>
-              <Title_Table_Cart>{item.quantity}</Title_Table_Cart>
-              <Title_Table_Cart>{item.name}</Title_Table_Cart>
-              <Title_Table_Cart>{item.price.toFixed(2)}</Title_Table_Cart>
-              <Title_Table_Cart>
-                {(item.price * item.quantity).toFixed(2)}
-              </Title_Table_Cart>
-              <Trash_Cart onPress={() => handleDelete(item.id)}>
-                <Image_Trash_Cart
-                  source={require('../Images/Controls/trash.png')}
-                />
-              </Trash_Cart>
-            </Container_Table_Cart>
-          );
-        })}
-      </Scroll_Cart_Details>
+      <FlatList
+        data={cart}
+        keyExtractor={item => item.id}
+        renderItem={({item}) => (
+          <Details_Cart item={item} handleDelete={handleDelete} />
+        )}
+      />
 
       <Container_Total_Cart>
         <Title_Total_Cart_Text>Total: </Title_Total_Cart_Text>
         <Title_Total_Cart>$ {total.toFixed(2)} </Title_Total_Cart>
       </Container_Total_Cart>
+
+      <Title_Details_Cart>DETAILS:</Title_Details_Cart>
 
       <Container_Details_Infor_Cart>
         {/* <Title_Input_Cart>Name</Title_Input_Cart> */}
@@ -113,6 +100,7 @@ const Cart = ({navigation}: any) => {
           value={data_Payment.name}
           onChange={e => handleOnChange(e, 'name')}
         />
+
         {/* <Title_Input_Cart>Email</Title_Input_Cart> */}
         <Inputs_Details_Cart
           placeholder="Email"

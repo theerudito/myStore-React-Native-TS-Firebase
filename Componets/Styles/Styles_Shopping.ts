@@ -37,15 +37,10 @@ export const ImageKart_Sopping = styled.Image`
 
 export const Container_Card_Shopping = styled.View`
   width: 100%;
-  margin-top: 15px;
+  margin-top: 10px;
   flex-direction: row;
-  flex-wrap: wrap;
   justify-content: space-around;
-`;
-
-export const Scroll_Card_Shopping = styled.ScrollView`
-  width: 100%;
-  height: 10%;
+  align-items: center;
 `;
 
 export const Container_Card_Body_Shopping = styled.View`
@@ -54,7 +49,6 @@ export const Container_Card_Body_Shopping = styled.View`
   height: 270px;
   border-radius: 10px;
   margin-top: 10px;
-  z-index: 999;
 `;
 
 export const Image_Card_Shopping = styled.Image`
@@ -131,6 +125,7 @@ export const Text_Increment_Decrement = styled.Text`
   background-color: #0099ff;
   align-items: center;
   text-align: center;
+  margin-top: 5px;
 `;
 export const Text_Cant_Product = styled.Text`
   color: white;
@@ -139,4 +134,5 @@ export const Text_Cant_Product = styled.Text`
   align-items: center;
   text-align: center;
   color: black;
+  margin-top: 5px;
 `;

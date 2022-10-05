@@ -10,6 +10,7 @@ import Products from '../Products/Products';
 import Add_Product from '../Products/Add_Product';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import Cart from '../Shopping/Cart';
+import Reports from '../Reposts/Reports';
 const Drawer = createDrawerNavigator();
 
 const Menu_Burger = () => {
@@ -23,6 +24,7 @@ const Menu_Burger = () => {
       <Drawer.Screen name="Add_Clients" component={Add_Client} />
       <Drawer.Screen name="Products" component={Products} />
       <Drawer.Screen name="Add_Products" component={Add_Product} />
+      <Drawer.Screen name="Reports" component={Reports} />
     </Drawer.Navigator>
   );
 };
