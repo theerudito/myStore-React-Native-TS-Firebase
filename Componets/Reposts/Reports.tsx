@@ -3,11 +3,15 @@ import styled from 'styled-components/native';
 import React, {useState} from 'react';
 import {Clientes_Docu} from '../Helpers/InitialValues';
 import Componet_Seach from '../Header/Componet_Seach';
-import {FlatList} from 'react-native';
+import {FlatList, Text, View} from 'react-native';
 const image = require('../Images/Controls/reports.png');
 
 const Reports = () => {
   const [dataReports, setDataReports] = useState(Clientes_Docu);
+
+  const vTotal = dataReports
+    .map(item => Number(item.total))
+    .reduce((a, b) => a + b, 0);
 
   return (
     <Container_Reports>
@@ -25,6 +29,10 @@ const Reports = () => {
         keyExtractor={(item): any => item.id}
         renderItem={({item}) => <Table_Products item={item} />}
       />
+
+      <Container_Total_Report>
+        <Total_Report>Total: $ {vTotal.toFixed(2)}</Total_Report>
+      </Container_Total_Report>
     </Container_Reports>
   );
 };
@@ -48,7 +56,7 @@ const Table_Products = ({item}: any) => {
 
 const Container_Reports = styled.View`
   width: 100%;
-  height: 80%;
+  height: 100%;
   margin-top: 10px;
   background-color: white;
 `;
@@ -76,7 +84,7 @@ const Title_Table = styled.Text`
 `;
 
 const Title_Body_Table = styled.Text`
-  width: 140px;
+  width: 110px;
   color: black;
 `;
 
@@ -93,4 +101,19 @@ const Action_Button_See = styled.Image`
   height: 30px;
 `;
 
-const Touch_Control = styled.TouchableOpacity``;
+const Total_Report = styled.Text`
+  width: 200px;
+  height: 40px;
+  color: white;
+  background-color: gray;
+  border-radius: 10px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin-top: -100px;
+`;
+
+const Container_Total_Report = styled.View`
+  margin-left: auto;
+  margin-right: 10px;
+`;

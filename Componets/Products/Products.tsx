@@ -82,7 +82,7 @@ const Container_Header_Table = styled.View`
 const Title_Table = styled.Text``;
 
 const Title_Body_Table = styled.Text`
-  width: 120px;
+  width: 100px;
 `;
 
 const Container_Body_Data_Table = styled.View`
