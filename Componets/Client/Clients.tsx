@@ -1,21 +1,54 @@
 /* eslint-disable */
 import styled from 'styled-components/native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Componet_Seach from '../Header/Componet_Seach';
 import {FlatList} from 'react-native';
-import {Clientes_Data} from '../Helpers/InitialValues';
+
+import firestore from '@react-native-firebase/firestore';
 
 const Clients = ({navigation}: any) => {
-  const image = require('../Images/Controls/add.png');
-  const [clientsData, setClientsData] = useState(Clientes_Data);
+  const ico_Add = require('../Images/Controls/add.png');
+
+  const [clientsData, setClientsData] = useState();
 
   const handle_Add_Client = () => {
     navigation.navigate('Add_Clients');
   };
 
+  const handleEditClient = () => {
+    navigation.navigate('Add_Clients');
+  };
+
+
+
+  const ReadFirebaseClients = async () => {
+    try {
+      const collectionClients = await firestore().collection('clients').get();
+
+      setClientsData(collectionClients.docs as any);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleDeleteClients = (id: any) => {
+    firestore()
+      .collection('clients')
+      .doc(id)
+      .delete()
+      .then(() => {
+        alert('User deleted!');
+      });
+    ReadFirebaseClients();
+  };
+
+  useEffect(() => {
+    ReadFirebaseClients();
+  }, []);
+
   return (
     <Container_Clients>
-      <Componet_Seach image={image} handle_Add_Client={handle_Add_Client} />
+      <Componet_Seach image={ico_Add} handle_Add_Client={handle_Add_Client} />
 
       <Container_Header_Table>
         <Title_Table>Name</Title_Table>
@@ -25,9 +58,16 @@ const Clients = ({navigation}: any) => {
       </Container_Header_Table>
 
       <FlatList
+        refreshing={true}
         data={clientsData}
         keyExtractor={(item): any => item.id}
-        renderItem={({item}) => <Table_Clients item={item} />}
+        renderItem={({item}) => (
+          <Table_Clients
+            item={item}
+            handleEditClient={handleEditClient}
+            handleDeleteClients={handleDeleteClients}
+          />
+        )}
       />
     </Container_Clients>
   );
@@ -35,22 +75,23 @@ const Clients = ({navigation}: any) => {
 
 export default Clients;
 
-const Table_Clients = ({item}: any) => {
-  const {name, city, phone} = item;
+const Table_Clients = ({item, handleEditClient, handleDeleteClients}: any) => {
+  const ico_Trash = require('../Images/Controls/trash.png');
+  const ico_Edit = require('../Images/Controls/edit.png');
 
   return (
     <Container_Table>
       <Container_Body_Data_Table>
-        <Title_Body_Table>{name} </Title_Body_Table>
-        <Title_Body_Table>{city} </Title_Body_Table>
-        <Title_Body_Table>{phone} </Title_Body_Table>
-        <Touch_Control>
-          <Action_Button_Edit source={require('../Images/Controls/edit.png')} />
+        <Title_Body_Table>{item.data().name} </Title_Body_Table>
+        <Title_Body_Table>{item.data().city} </Title_Body_Table>
+        <Title_Body_Table>{item.data().phone} </Title_Body_Table>
+
+        <Touch_Control onPress={() => handleEditClient(item.id)}>
+          <Action_Button_Edit source={ico_Edit} />
         </Touch_Control>
-        <Touch_Control>
-          <Action_Button_Trash
-            source={require('../Images/Controls/trash.png')}
-          />
+
+        <Touch_Control onPress={() => handleDeleteClients(item.id)}>
+          <Action_Button_Trash source={ico_Trash} />
         </Touch_Control>
       </Container_Body_Data_Table>
     </Container_Table>

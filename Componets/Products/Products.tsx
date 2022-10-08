@@ -1,18 +1,41 @@
 /* eslint-disable */
 import styled from 'styled-components/native';
-import React, {useState} from 'react';
-
+import React, {useEffect, useState} from 'react';
 import Componet_Seach from '../Header/Componet_Seach';
-import {ProductShoopping} from '../Helpers/InitialValues';
 import {FlatList} from 'react-native';
+import firestore from '@react-native-firebase/firestore';
 
 const Products = ({navigation}: any) => {
   const image = require('../Images/Controls/add-product.png');
-  const [productData, setproductData] = useState(ProductShoopping);
+  const [productData, setproductData] = useState();
 
   const handle_Add_Product = () => {
     navigation.navigate('Add_Products');
   };
+
+  const handleEditProduct = () => {
+    navigation.navigate('Add_Products');
+  };
+
+  const readAllProducts = async () => {
+    const productCollectios = await firestore().collection('products').get();
+    setproductData(productCollectios.docs as any);
+  };
+
+  const handleDeleteProduct = async (id: string) => {
+    firestore()
+      .collection('products')
+      .doc(id)
+      .delete()
+      .then(() => {
+        alert('product deleted!');
+      });
+    readAllProducts();
+  };
+
+  useEffect(() => {
+    readAllProducts();
+  }, []);
 
   return (
     <Container_Products>
@@ -28,7 +51,13 @@ const Products = ({navigation}: any) => {
       <FlatList
         data={productData}
         keyExtractor={(item): any => item.id}
-        renderItem={({item}) => <Table_Products item={item} />}
+        renderItem={({item}) => (
+          <Table_Products
+            item={item}
+            handleEditProduct={handleEditProduct}
+            handleDeleteProduct={handleDeleteProduct}
+          />
+        )}
       />
     </Container_Products>
   );
@@ -36,22 +65,28 @@ const Products = ({navigation}: any) => {
 
 export default Products;
 
-const Table_Products = ({item}: any) => {
-  const {cant, name, price} = item;
+const Table_Products = ({
+  item,
+  handleEditProduct,
+  handleDeleteProduct,
+}: any) => {
+  const ico_Edit = require('../Images/Controls/edit.png');
+  const ico_Trash = require('../Images/Controls/trash.png');
+  const {stock, name, price} = item.data();
 
   return (
     <Container_Table>
       <Container_Body_Data_Table>
-        <Title_Body_Table>{cant} </Title_Body_Table>
+        <Title_Body_Table>{stock} </Title_Body_Table>
         <Title_Body_Table>{name} </Title_Body_Table>
         <Title_Body_Table>{price} </Title_Body_Table>
-        <Touch_Control>
-          <Action_Button_Edit source={require('../Images/Controls/edit.png')} />
+
+        <Touch_Control onPress={handleEditProduct}>
+          <Action_Button_Edit source={ico_Edit} />
         </Touch_Control>
-        <Touch_Control>
-          <Action_Button_Trash
-            source={require('../Images/Controls/trash.png')}
-          />
+
+        <Touch_Control onPress={() => handleDeleteProduct(item.id)}>
+          <Action_Button_Trash source={ico_Trash} />
         </Touch_Control>
       </Container_Body_Data_Table>
     </Container_Table>
