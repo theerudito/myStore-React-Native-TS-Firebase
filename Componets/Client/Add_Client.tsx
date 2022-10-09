@@ -1,7 +1,6 @@
 /* eslint-disable */
 
 import React, {useState} from 'react';
-
 import {
   Button_Client_Control,
   Container_Add_Clients,
@@ -10,15 +9,13 @@ import {
   Text_Button_Client,
 } from '../Styles/Styles_Add_Client';
 import firestore from '@react-native-firebase/firestore';
+import {dataClientNew} from '../Helpers/InitialValues';
+import {useDispatch} from 'react-redux';
+import {loadingData} from '../Store/slices/products';
 
 const Add_Client = ({navigation}: any) => {
-  const [dataUser, setDataUser] = useState({
-    name: '',
-    direction: '',
-    phone: '',
-    email: '',
-    city: '',
-  });
+  const [dataClient, setDataClient] = useState(dataClientNew);
+  const dispatch = useDispatch();
 
   const handleEditClient = async () => {
     firestore()
@@ -33,31 +30,26 @@ const Add_Client = ({navigation}: any) => {
   };
 
   const handleAddClient = async () => {
+    dispatch(loadingData(true));
     await firestore()
       .collection('clients')
       .add({
-        name: dataUser.name,
-        direction: dataUser.direction,
-        phone: dataUser.phone,
-        email: dataUser.email,
-        city: dataUser.city,
+        name: dataClient.name,
+        direction: dataClient.direction,
+        phone: dataClient.phone,
+        email: dataClient.email,
+        city: dataClient.city,
       })
       .then(() => {
-        alert('User added!');
+        alert('client added!');
       });
-    setDataUser({
-      name: '',
-      direction: '',
-      phone: '',
-      email: '',
-      city: '',
-    });
-
+    setDataClient(dataClientNew);
     navigation.navigate('Clients');
+    dispatch(loadingData(false));
   };
 
   const handleChange = (name: string, value: string) => {
-    setDataUser({...dataUser, [name]: value});
+    setDataClient({...dataClient, [name]: value});
   };
 
   return (
@@ -66,31 +58,31 @@ const Add_Client = ({navigation}: any) => {
         <Input_Client
           placeholder="Name"
           name="name"
-          value={dataUser.name}
+          value={dataClient.name}
           onChangeText={value => handleChange('name', value)}
         />
         <Input_Client
           placeholder="Direction"
           name="direction"
-          value={dataUser.direction}
+          value={dataClient.direction}
           onChangeText={value => handleChange('direction', value)}
         />
         <Input_Client
           placeholder="Phone"
           name="phone"
-          value={dataUser.phone}
+          value={dataClient.phone}
           onChangeText={value => handleChange('phone', value)}
         />
         <Input_Client
           placeholder="Email"
           name="email"
-          value={dataUser.email}
+          value={dataClient.email}
           onChangeText={value => handleChange('email', value)}
         />
         <Input_Client
           placeholder="City"
           name="city"
-          value={dataUser.city}
+          value={dataClient.city}
           onChangeText={value => handleChange('city', value)}
         />
       </Container_Inputs_Client>

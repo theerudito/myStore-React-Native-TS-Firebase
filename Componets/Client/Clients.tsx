@@ -1,15 +1,18 @@
 /* eslint-disable */
 import styled from 'styled-components/native';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import Componet_Seach from '../Header/Componet_Seach';
 import {FlatList} from 'react-native';
-
+import {useDispatch, useSelector} from 'react-redux';
 import firestore from '@react-native-firebase/firestore';
+import {getClients, loadingData} from '../Store/slices/products';
 
 const Clients = ({navigation}: any) => {
   const ico_Add = require('../Images/Controls/add.png');
-
-  const [clientsData, setClientsData] = useState();
+  const dispatch = useDispatch();
+  const {isLoading = false, clients = []} = useSelector(
+    (state: any) => state.products,
+  );
 
   const handle_Add_Client = () => {
     navigation.navigate('Add_Clients');
@@ -19,13 +22,18 @@ const Clients = ({navigation}: any) => {
     navigation.navigate('Add_Clients');
   };
 
-
-
   const ReadFirebaseClients = async () => {
+    dispatch(loadingData(true));
     try {
       const collectionClients = await firestore().collection('clients').get();
-
-      setClientsData(collectionClients.docs as any);
+      const dataClients = collectionClients.docs.map(doc => {
+        return {
+          id: doc.id,
+          ...doc.data(),
+        };
+      });
+      dispatch(getClients(dataClients));
+      dispatch(loadingData(false));
     } catch (error) {
       console.log(error);
     }
@@ -58,8 +66,9 @@ const Clients = ({navigation}: any) => {
       </Container_Header_Table>
 
       <FlatList
-        refreshing={true}
-        data={clientsData}
+        onRefresh={ReadFirebaseClients}
+        refreshing={isLoading}
+        data={clients}
         keyExtractor={(item): any => item.id}
         renderItem={({item}) => (
           <Table_Clients
@@ -82,9 +91,9 @@ const Table_Clients = ({item, handleEditClient, handleDeleteClients}: any) => {
   return (
     <Container_Table>
       <Container_Body_Data_Table>
-        <Title_Body_Table>{item.data().name} </Title_Body_Table>
-        <Title_Body_Table>{item.data().city} </Title_Body_Table>
-        <Title_Body_Table>{item.data().phone} </Title_Body_Table>
+        <Title_Body_Table>{item.name} </Title_Body_Table>
+        <Title_Body_Table>{item.city} </Title_Body_Table>
+        <Title_Body_Table>{item.phone} </Title_Body_Table>
 
         <Touch_Control onPress={() => handleEditClient(item.id)}>
           <Action_Button_Edit source={ico_Edit} />

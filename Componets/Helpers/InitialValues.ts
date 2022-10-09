@@ -1,8 +1,26 @@
 /* eslint-disable */
+
+export const dataClientNew = {
+  name: '',
+  direction: '',
+  phone: '',
+  email: '',
+  city: '',
+};
+
+export const dataProductNew = {
+  name: '',
+  brand: '',
+  description: '',
+  price: '',
+  stock: '',
+  image: '',
+};
+
 export const ProductShoopping = [
   {
     id: 1,
-    cant: 1,
+    stock: 1,
     name: 'Coca Cola',
     price: 1.5,
     brand: 'Coca Cola',
@@ -11,7 +29,7 @@ export const ProductShoopping = [
   },
   {
     id: 2,
-    cant: 1,
+    stock: 1,
     name: 'Aceite',
     price: 4.5,
     brand: 'La Campesina',
@@ -20,7 +38,7 @@ export const ProductShoopping = [
   },
   {
     id: 3,
-    cant: 0,
+    stock: 0,
     name: 'Oreo',
     price: 1.5,
     brand: 'Oreo',
@@ -29,7 +47,7 @@ export const ProductShoopping = [
   },
   {
     id: 4,
-    cant: 3,
+    stock: 3,
     name: 'doritos',
     price: 0.5,
     brand: 'Nido',
@@ -38,7 +56,7 @@ export const ProductShoopping = [
   },
   {
     id: 5,
-    cant: 5,
+    stock: 5,
     name: 'Supan',
     price: 2.0,
     brand: 'Integral',
@@ -47,7 +65,7 @@ export const ProductShoopping = [
   },
   {
     id: 6,
-    cant: 4,
+    stock: 4,
     name: 'Fantas',
     price: 1.25,
     brand: 'Coca Cola',
@@ -56,7 +74,7 @@ export const ProductShoopping = [
   },
   {
     id: 7,
-    cant: 7,
+    stock: 7,
     name: 'Arroz',
     price: 0.75,
     brand: 'Gustadina',
@@ -65,7 +83,7 @@ export const ProductShoopping = [
   },
   {
     id: 8,
-    cant: 11,
+    stock: 11,
     name: 'Mayonesa',
     price: 1.25,
     brand: 'Pronaca',

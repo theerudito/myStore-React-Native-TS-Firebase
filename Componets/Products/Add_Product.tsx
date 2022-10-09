@@ -11,19 +11,16 @@ import {
   Input_Product_2,
   Input_Product_3,
   Text_Button_Product,
+  Touch_Image_Product,
 } from '../Styles/Styles_Add_Product';
 import firestore from '@react-native-firebase/firestore';
+import {utils} from '@react-native-firebase/app';
+import storage from '@react-native-firebase/storage';
+import {dataProductNew} from '../Helpers/InitialValues';
 
 const Add_Product = ({navigation}: any) => {
   const ico_Product = require('../Images/Controls//image.png');
-  const [dataProduct, setDataProduct] = useState({
-    name: '',
-    brand: '',
-    description: '',
-    price: '',
-    stock: '',
-    image: '',
-  });
+  const [dataProduct, setDataProduct] = useState(dataProductNew);
 
   const handleOnChange = (name: string, value: string) => {
     setDataProduct({...dataProduct, [name]: value});
@@ -43,21 +40,18 @@ const Add_Product = ({navigation}: any) => {
       .then(() => {
         alert('product added!');
       });
-    setDataProduct({
-      name: '',
-      brand: '',
-      description: '',
-      price: '',
-      stock: '',
-      image: '',
-    });
+    setDataProduct(dataProductNew);
 
     navigation.navigate('Products');
   };
 
+  const changeImage = async () => {};
+
   return (
     <Container_Add_Product>
-      <Image_Product source={ico_Product} />
+      <Touch_Image_Product onPress={changeImage}>
+        <Image_Product source={ico_Product} />
+      </Touch_Image_Product>
 
       <Container_Inputs_Product>
         <Input_Product

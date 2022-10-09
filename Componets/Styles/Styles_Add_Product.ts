@@ -68,3 +68,11 @@ export const Text_Button_Product = styled.Text`
   font-size: 20px;
   color: #fff;
 `;
+
+export const Touch_Image_Product = styled.TouchableOpacity`
+  width: 100%;
+  height: 50%;
+  resize-mode: contain;
+  align-self: center;
+  margin-top: 0px;
+`;

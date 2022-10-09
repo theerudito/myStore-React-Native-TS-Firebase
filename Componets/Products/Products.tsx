@@ -1,13 +1,18 @@
 /* eslint-disable */
 import styled from 'styled-components/native';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import Componet_Seach from '../Header/Componet_Seach';
 import {FlatList} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
+import {useDispatch, useSelector} from 'react-redux';
+import {getProducts, loadingData} from '../Store/slices/products';
 
 const Products = ({navigation}: any) => {
   const image = require('../Images/Controls/add-product.png');
-  const [productData, setproductData] = useState();
+  const {isLoading = false, products = []} = useSelector(
+    (state: any) => state.products,
+  );
+  const dispatch = useDispatch();
 
   const handle_Add_Product = () => {
     navigation.navigate('Add_Products');
@@ -18,8 +23,20 @@ const Products = ({navigation}: any) => {
   };
 
   const readAllProducts = async () => {
-    const productCollectios = await firestore().collection('products').get();
-    setproductData(productCollectios.docs as any);
+    dispatch(loadingData(true));
+    try {
+      const productCollectios = await firestore().collection('products').get();
+      const dataProducts = productCollectios.docs.map(doc => {
+        return {
+          id: doc.id,
+          ...doc.data(),
+        };
+      });
+      dispatch(getProducts(dataProducts));
+      dispatch(loadingData(false));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleDeleteProduct = async (id: string) => {
@@ -49,7 +66,9 @@ const Products = ({navigation}: any) => {
       </Container_Header_Table>
 
       <FlatList
-        data={productData}
+        onRefresh={readAllProducts}
+        refreshing={isLoading}
+        data={products}
         keyExtractor={(item): any => item.id}
         renderItem={({item}) => (
           <Table_Products
@@ -72,7 +91,7 @@ const Table_Products = ({
 }: any) => {
   const ico_Edit = require('../Images/Controls/edit.png');
   const ico_Trash = require('../Images/Controls/trash.png');
-  const {stock, name, price} = item.data();
+  const {stock, name, price} = item;
 
   return (
     <Container_Table>
