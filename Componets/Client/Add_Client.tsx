@@ -31,21 +31,25 @@ const Add_Client = ({navigation}: any) => {
 
   const handleAddClient = async () => {
     dispatch(loadingData(true));
-    await firestore()
-      .collection('clients')
-      .add({
-        name: dataClient.name,
-        direction: dataClient.direction,
-        phone: dataClient.phone,
-        email: dataClient.email,
-        city: dataClient.city,
-      })
-      .then(() => {
-        alert('client added!');
-      });
-    setDataClient(dataClientNew);
-    navigation.navigate('Clients');
-    dispatch(loadingData(false));
+    try {
+      await firestore()
+        .collection('clients')
+        .add({
+          name: dataClient.name,
+          direction: dataClient.direction,
+          phone: dataClient.phone,
+          email: dataClient.email,
+          city: dataClient.city,
+        })
+        .then(() => {
+          alert('client added!');
+        });
+      setDataClient(dataClientNew);
+      dispatch(loadingData(false));
+      navigation.navigate('Clients');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleChange = (name: string, value: string) => {
