@@ -68,6 +68,7 @@ const Add_Product = ({navigation}: any) => {
           get_Url_Image();
         });
       });
+    setChange(false);
     setDataProduct(dataProductNew);
 
     //navigation.navigate('Products');
