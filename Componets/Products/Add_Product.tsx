@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Button_Product_Control,
   ContainerInput2_Product,
@@ -17,66 +17,69 @@ import firestore from '@react-native-firebase/firestore';
 import storage from '@react-native-firebase/storage';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import {dataProductNew} from '../Helpers/InitialValues';
+import uuid from 'react-native-uuid';
 
 const Add_Product = ({navigation}: any) => {
-  const ico_Product = require('../Images/Controls//image.png');
+  const ico_Product = require('../Images/Controls/image.png');
   const [dataProduct, setDataProduct] = useState(dataProductNew);
   const [image, setImage] = useState(null);
   const [change, setChange] = useState(false);
-  const [url_Image, setUrl_Image] = useState();
+  const [url_Image, setUrl_Image] = useState('');
+  const nameImage = uuid.v4();
+
+  console.log('url ' + url_Image);
 
   const handleOnChange = (name: string, value: string) => {
     setDataProduct({...dataProduct, [name]: value});
   };
 
-  const get_Url_Image = async () => {
+  const handleAddProduct = async () => {
+    const reference = storage().ref(`/imgProducts/${nameImage}`);
+    setUrl_Image(nameImage);
+
+    const pathToFile = image;
+    const task = reference.putFile(pathToFile as any);
+
+    task.on('state_changed', taskSnapshot => {
+      console.log(
+        `${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}`,
+      );
+    });
+    task.then(() => {
+      console.log('Image uploaded to the bucket!');
+    });
+    alert('product added!');
+
     const url = await storage()
       .ref(`/imgProducts/${url_Image}`)
       .getDownloadURL();
     setUrl_Image(url);
-    console.log(url);
-  };
 
-  const handleAddProduct = async () => {
+    setChange(false);
+    setDataProduct(dataProductNew);
+
     await firestore()
       .collection('products')
       .add({
         name: dataProduct.name,
         brand: dataProduct.brand,
-        direction: dataProduct.description,
+        description: dataProduct.description,
         price: dataProduct.price,
         stock: dataProduct.stock,
-        image: url_Image,
+        image: 'url_Image',
       })
-
       .then(() => {
-        alert('product added!');
-        const ramdom = Math.random().toString(36).substring(7);
-        setUrl_Image(ramdom.toString());
-        const reference = storage().ref(`/imgProducts/${ramdom}`);
-        const pathToFile = image;
-        const task = reference.putFile(pathToFile as any);
-
-        task.on('state_changed', taskSnapshot => {
-          console.log(
-            `${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}`,
-          );
-        });
-        task.then(() => {
-          console.log('Image uploaded to the bucket!');
-
-          get_Url_Image();
-        });
+        console.log('Product added!');
+        setUrl_Image('');
       });
-    setChange(false);
-    setDataProduct(dataProductNew);
 
     //navigation.navigate('Products');
   };
 
-  const openGaleryLoad = async () => {
+  const openGaleryLoad = () => {
+    setUrl_Image(nameImage);
     const options = {
-      title: 'Select Avatar',
+      title: 'Select Image',
       storageOptions: {
         skipBackup: true,
         path: 'images',
