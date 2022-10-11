@@ -18,6 +18,7 @@ import storage from '@react-native-firebase/storage';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import {dataProductNew} from '../Helpers/InitialValues';
 import uuid from 'react-native-uuid';
+const nameImage = uuid.v4().slice(0, 8);
 
 const Add_Product = ({navigation}: any) => {
   const ico_Product = require('../Images/Controls/image.png');
@@ -25,17 +26,14 @@ const Add_Product = ({navigation}: any) => {
   const [image, setImage] = useState(null);
   const [change, setChange] = useState(false);
   const [url_Image, setUrl_Image] = useState('');
-  const nameImage = uuid.v4();
-
-  console.log('url ' + url_Image);
 
   const handleOnChange = (name: string, value: string) => {
     setDataProduct({...dataProduct, [name]: value});
   };
 
   const handleAddProduct = async () => {
-    const reference = storage().ref(`/imgProducts/${nameImage}`);
     setUrl_Image(nameImage);
+    const reference = storage().ref(`/imgProducts/${nameImage}`);
 
     const pathToFile = image;
     const task = reference.putFile(pathToFile as any);
@@ -50,28 +48,39 @@ const Add_Product = ({navigation}: any) => {
     });
     alert('product added!');
 
-    const url = await storage()
-      .ref(`/imgProducts/${url_Image}`)
-      .getDownloadURL();
-    setUrl_Image(url);
+    const getUrl = async () => {
+      const url = await storage()
+        .ref(`/imgProducts/${url_Image}`)
+        .getDownloadURL();
+      console.log(url);
+      setUrl_Image(url);
+    };
 
-    setChange(false);
-    setDataProduct(dataProductNew);
+    setTimeout(() => {
+      getUrl();
+    }, 2000);
 
-    await firestore()
-      .collection('products')
-      .add({
-        name: dataProduct.name,
-        brand: dataProduct.brand,
-        description: dataProduct.description,
-        price: dataProduct.price,
-        stock: dataProduct.stock,
-        image: 'url_Image',
-      })
-      .then(() => {
-        console.log('Product added!');
-        setUrl_Image('');
-      });
+    setTimeout(() => {
+      createProduct();
+      setChange(false);
+      setDataProduct(dataProductNew);
+    }, 3000);
+
+    const createProduct = async () => {
+      await firestore()
+        .collection('products')
+        .add({
+          name: dataProduct.name,
+          brand: dataProduct.brand,
+          description: dataProduct.description,
+          price: dataProduct.price,
+          stock: dataProduct.stock,
+          image: url_Image,
+        })
+        .then(() => {
+          console.log('Product added!');
+        });
+    };
 
     //navigation.navigate('Products');
   };
