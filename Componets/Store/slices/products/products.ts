@@ -4,7 +4,7 @@ export const productsSlice = createSlice({
   name: 'products',
   initialState: {
     product: [],
-    isLoading: false,
+    isLoading: true,
     clients: [],
     products: [],
   },
@@ -27,5 +27,10 @@ export const productsSlice = createSlice({
   },
 });
 
-export const {getProduct, getProducts, createProducts, loadingData, getClients} =
-  productsSlice.actions;
+export const {
+  getProduct,
+  getProducts,
+  createProducts,
+  loadingData,
+  getClients,
+} = productsSlice.actions;

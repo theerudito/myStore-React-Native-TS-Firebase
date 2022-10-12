@@ -22,7 +22,7 @@ const Shooping_Card = ({item, addToCart}: any) => {
   return (
     <Container_Card_Shopping>
       <Container_Card_Body_Shopping>
-        <Image_Card_Shopping source={image} />
+        <Image_Card_Shopping source={{uri: image}} />
         <Title_Product_Sopping>Name: {name} </Title_Product_Sopping>
         <Title_Mark_Sopping>Brand: {brand} </Title_Mark_Sopping>
         <Title_Description_Sopping>

@@ -6,10 +6,11 @@ import {FlatList} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import {useDispatch, useSelector} from 'react-redux';
 import {getProducts, loadingData} from '../Store/slices/products';
+import storage from '@react-native-firebase/storage';
 
 const Products = ({navigation}: any) => {
   const image = require('../Images/Controls/add-product.png');
-  const {isLoading = false, products = []} = useSelector(
+  const {isLoading = true, products = []} = useSelector(
     (state: any) => state.products,
   );
   const dispatch = useDispatch();
@@ -39,14 +40,16 @@ const Products = ({navigation}: any) => {
     }
   };
 
-  const handleDeleteProduct = async (id: string) => {
-    firestore()
+  const handleDeleteProduct = async (item: any) => {
+    await firestore()
       .collection('products')
-      .doc(id)
+      .doc(item.id)
       .delete()
-      .then(() => {
+      .then(async () => {
+        await storage().refFromURL(item.image).delete();
         alert('product deleted!');
       });
+
     readAllProducts();
   };
 
@@ -104,7 +107,7 @@ const Table_Products = ({
           <Action_Button_Edit source={ico_Edit} />
         </Touch_Control>
 
-        <Touch_Control onPress={() => handleDeleteProduct(item.id)}>
+        <Touch_Control onPress={() => handleDeleteProduct(item)}>
           <Action_Button_Trash source={ico_Trash} />
         </Touch_Control>
       </Container_Body_Data_Table>

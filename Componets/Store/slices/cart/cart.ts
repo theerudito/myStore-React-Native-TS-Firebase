@@ -6,7 +6,6 @@ export const cartSlice = createSlice({
     cart: [],
     total: 0,
     counter: 0,
-    payment: {name: '', email: '', phone: ''},
     datetails: [],
   },
   reducers: {
@@ -49,29 +48,14 @@ export const cartSlice = createSlice({
       state.total = vTotal;
     },
     getPayment: (state, action) => {
-      state.payment = action.payload;
+      console.log(action.payload);
+      state.datetails = action.payload;
       state.cart = [];
       state.counter = 0;
       state.total = 0;
     },
-
-    getDetails: (state, action) => {
-      console.log(action.payload);
-      const details = [
-        {...action.payload.cart, client: action.payload.payment},
-      ];
-      //console.log(details);
-
-      state.datetails = action.payload;
-    },
   },
 });
 
-export const {
-  AddCart,
-  addCounter,
-  getTotal,
-  removeCart,
-  getPayment,
-  getDetails,
-} = cartSlice.actions;
+export const {AddCart, addCounter, getTotal, removeCart, getPayment} =
+  cartSlice.actions;

@@ -26,7 +26,7 @@ import {
   Touch_Control_Store,
 } from '../Styles/Styles_Shopping';
 import {ProductShoopping} from '../Helpers/InitialValues';
-import {getProducts} from '../Store/slices/products';
+import {getProducts, loadingData} from '../Store/slices/products';
 
 import {ContainerSVGWaves} from '../Styles/StyleApp';
 import {ButtonWave, TopWave} from '../SVG/Waves';
@@ -35,14 +35,34 @@ import {AddCart, addCounter, getTotal} from '../Store/slices/cart';
 import Componet_Seach from '../Header/Componet_Seach';
 import {FlatList} from 'react-native';
 import Shooping_Card from './Shooping_Card';
+import firestore from '@react-native-firebase/firestore';
 
 export const Shopping = ({navigation}: any) => {
-  const {products = []} = useSelector((state: any) => state.products);
+  const {isLoading = true, products = []} = useSelector(
+    (state: any) => state.products,
+  );
   const {cart} = useSelector((state: any) => state.cart);
   const dispatch = useDispatch();
 
+  const readAllProducts = async () => {
+    dispatch(loadingData(true));
+    try {
+      const productCollectios = await firestore().collection('products').get();
+      const dataProducts = productCollectios.docs.map(doc => {
+        return {
+          id: doc.id,
+          ...doc.data(),
+        };
+      });
+      dispatch(getProducts(dataProducts));
+      dispatch(loadingData(false));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
-    dispatch(getProducts(ProductShoopping));
+    readAllProducts();
   }, []);
 
   const addToCart = (num: number, item: any) => {
@@ -75,6 +95,8 @@ export const Shopping = ({navigation}: any) => {
       <Componet_Seach />
 
       <FlatList
+        onRefresh={readAllProducts}
+        refreshing={isLoading}
         data={products}
         keyExtractor={item => item.id}
         renderItem={({item}) => (

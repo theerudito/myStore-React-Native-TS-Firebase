@@ -19,30 +19,29 @@ import {
   Title_Total_Cart_Text,
 } from '../Styles/Styles_Cart';
 import {useSelector, useDispatch} from 'react-redux';
-import {
-  getDetails,
-  getPayment,
-  getTotal,
-  removeCart,
-} from '../Store/slices/cart';
+import {getPayment, getTotal, removeCart} from '../Store/slices/cart';
 import {FlatList} from 'react-native';
 import Details_Cart from './Details_Cart';
 import {Text} from 'react-native';
+import {paymetData} from '../Helpers/InitialValues';
+import firestore from '@react-native-firebase/firestore';
 
 const Cart = ({navigation}: any) => {
+  const fech = new Date();
+  console.log(fech);
   const {
     cart = [],
     total,
-    payment = [],
+    datetails = [],
   } = useSelector((state: any) => state.cart);
-
+  const [data_Payment, setData_Payment] = useState(paymetData);
+  const numeroFact = 1223;
+  const fecha = new Date();
+  const dia = fecha.getDay();
+  const mes = fecha.getMonth();
+  const año = fecha.getFullYear();
+  const {name, email, phone} = data_Payment;
   const dispatch = useDispatch();
-
-  const [data_Payment, setData_Payment] = useState({
-    name: '',
-    email: '',
-    phone: '',
-  });
 
   const handleOnChange = (e: any, name: string) => {
     setData_Payment({...data_Payment, [name]: e.nativeEvent.text});
@@ -57,12 +56,27 @@ const Cart = ({navigation}: any) => {
     dispatch(getTotal(0));
   };
 
-  const handleBuy = () => {
+  const handleBuy = async () => {
+    const data = Object.assign({
+      
+      fech,
+      dia,
+      mes,
+      año,
+      total,
+      name,
+      email,
+      phone,
+    });
+
     if (cart.length > 0) {
-      dispatch(getPayment(data_Payment));
-      setData_Payment({name: '', email: '', phone: ''});
+      await firestore().collection('details').add({
+        data,
+      });
+
+      dispatch(getPayment(data));
+      setData_Payment(paymetData);
       alert('Compra realizada con exito');
-      dispatch(getDetails({payment, cart}));
     } else {
       alert('No hay productos en el carrito');
     }

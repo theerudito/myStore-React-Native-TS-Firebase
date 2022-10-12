@@ -18,9 +18,8 @@ import storage from '@react-native-firebase/storage';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import {dataProductNew} from '../Helpers/InitialValues';
 import uuid from 'react-native-uuid';
-import {async} from '@firebase/util';
 
-const nameImage = uuid.v4().slice(0, 8);
+const nameImage = uuid.v4();
 
 const Add_Product = ({navigation}: any) => {
   const ico_Product = require('../Images/Controls/image.png');
@@ -37,7 +36,8 @@ const Add_Product = ({navigation}: any) => {
     setUrl_Image(nameImage as any);
     const reference = storage().ref(`/imgProducts/${nameImage}`);
 
-    const pathToFile = image;
+    let pathToFile = image;
+
     const task = reference.putFile(pathToFile as any);
 
     task.on('state_changed', taskSnapshot => {
@@ -56,6 +56,7 @@ const Add_Product = ({navigation}: any) => {
         .collection('products')
         .add({
           name: dataProduct.name,
+          nameImage: nameImage,
           brand: dataProduct.brand,
           description: dataProduct.description,
           price: dataProduct.price,
@@ -64,13 +65,14 @@ const Add_Product = ({navigation}: any) => {
         })
         .then(() => {
           console.log('Product added!');
-          setUrl_Image('');
         });
       setChange(false);
+      setUrl_Image('');
+      setImage(null);
       setDataProduct(dataProductNew);
-    });
 
-    //navigation.navigate('Products');
+      navigation.navigate('Products');
+    });
   };
 
   const openGaleryLoad = () => {
@@ -89,7 +91,8 @@ const Add_Product = ({navigation}: any) => {
         console.log('User cancelled image upload');
       } else {
         const path = response.assets[0].uri;
-        setImage(path);
+        console.log(path);
+        setImage(path as any);
         setChange(true);
       }
     });
