@@ -27,8 +27,6 @@ import {paymetData} from '../Helpers/InitialValues';
 import firestore from '@react-native-firebase/firestore';
 
 const Cart = ({navigation}: any) => {
-  const fech = new Date();
-  console.log(fech);
   const {
     cart = [],
     total,
@@ -36,10 +34,8 @@ const Cart = ({navigation}: any) => {
   } = useSelector((state: any) => state.cart);
   const [data_Payment, setData_Payment] = useState(paymetData);
   const numeroFact = 1223;
-  const fecha = new Date();
-  const dia = fecha.getDay();
-  const mes = fecha.getMonth();
-  const año = fecha.getFullYear();
+  const today = new Date();
+  const fecha = today.toLocaleDateString('en-US');
   const {name, email, phone} = data_Payment;
   const dispatch = useDispatch();
 
@@ -58,15 +54,13 @@ const Cart = ({navigation}: any) => {
 
   const handleBuy = async () => {
     const data = Object.assign({
-      
-      fech,
-      dia,
-      mes,
-      año,
+      numeroFact,
+      fecha,
       total,
       name,
       email,
       phone,
+      cart,
     });
 
     if (cart.length > 0) {
