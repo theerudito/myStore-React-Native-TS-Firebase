@@ -1,5 +1,5 @@
 /* eslint-disable */
-
+import {ActivityIndicator, View, Text} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {
   Button_Product_Control,
@@ -18,6 +18,8 @@ import storage from '@react-native-firebase/storage';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import {dataProductNew} from '../Helpers/InitialValues';
 import uuid from 'react-native-uuid';
+import {async} from '@firebase/util';
+
 const nameImage = uuid.v4().slice(0, 8);
 
 const Add_Product = ({navigation}: any) => {
@@ -32,7 +34,7 @@ const Add_Product = ({navigation}: any) => {
   };
 
   const handleAddProduct = async () => {
-    setUrl_Image(nameImage);
+    setUrl_Image(nameImage as any);
     const reference = storage().ref(`/imgProducts/${nameImage}`);
 
     const pathToFile = image;
@@ -40,33 +42,16 @@ const Add_Product = ({navigation}: any) => {
 
     task.on('state_changed', taskSnapshot => {
       console.log(
-        `${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}`,
+        `${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.bytesTransferred}`,
       );
     });
-    task.then(() => {
+    task.then(async () => {
       console.log('Image uploaded to the bucket!');
-    });
-    alert('product added!');
-
-    const getUrl = async () => {
       const url = await storage()
         .ref(`/imgProducts/${url_Image}`)
         .getDownloadURL();
-      console.log(url);
-      setUrl_Image(url);
-    };
+      setUrl_Image(url as any);
 
-    setTimeout(() => {
-      getUrl();
-    }, 2000);
-
-    setTimeout(() => {
-      createProduct();
-      setChange(false);
-      setDataProduct(dataProductNew);
-    }, 3000);
-
-    const createProduct = async () => {
       await firestore()
         .collection('products')
         .add({
@@ -75,18 +60,21 @@ const Add_Product = ({navigation}: any) => {
           description: dataProduct.description,
           price: dataProduct.price,
           stock: dataProduct.stock,
-          image: url_Image,
+          image: url,
         })
         .then(() => {
           console.log('Product added!');
+          setUrl_Image('');
         });
-    };
+      setChange(false);
+      setDataProduct(dataProductNew);
+    });
 
     //navigation.navigate('Products');
   };
 
   const openGaleryLoad = () => {
-    setUrl_Image(nameImage);
+    setUrl_Image(nameImage as any);
     const options = {
       title: 'Select Image',
       storageOptions: {
@@ -157,3 +145,10 @@ const Add_Product = ({navigation}: any) => {
 };
 
 export default Add_Product;
+
+{
+  /* <View>
+  <Text_Button_Product>{transferred} % Completed!</Text_Button_Product>
+  <ActivityIndicator size="large" color="#0000ff" />
+</View>; */
+}

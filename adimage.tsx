@@ -1,46 +1,27 @@
 /* eslint-disable */
-import {View, Text, TextInput, Image, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  Image,
+  TouchableOpacity,
+  Alert,
+  ActivityIndicator,
+} from 'react-native';
 import React, {useState} from 'react';
 import storage from '@react-native-firebase/storage';
+import firestore from '@react-native-firebase/firestore';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import uuid from 'react-native-uuid';
 
 const Image_Add = () => {
+  const ico_Add = require('./Componets/Images/Controls/add.png');
   const [image, setImage] = useState(null);
   const [change, setChange] = useState(false);
-  const ico_Add = require('./Componets/Images/Controls/add.png');
   const [url_Image, setUrl_Image] = useState();
-
-  const get_Url_Image = async () => {
-    const url = await storage()
-      .ref(`/imgProducts/${url_Image}`)
-      .getDownloadURL();
-    console.log(url);
-  };
-
-  const add_Image = async () => {
-    try {
-      const ramdom = Math.random().toString(36).substring(7);
-
-      setUrl_Image(ramdom.toString());
-      const reference = storage().ref(`/imgProducts/${ramdom}`);
-      const pathToFile = image;
-      const task = reference.putFile(pathToFile as any);
-
-      task.on('state_changed', taskSnapshot => {
-        console.log(
-          `${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}`,
-        );
-      });
-      task.then(() => {
-        console.log('Image uploaded to the bucket!');
-        get_Url_Image();
-      });
-
-      setChange(false);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const [uploading, setUploading] = useState(false);
+  const [progress, setprogress] = useState(0);
+  const nameImage = uuid.v4().slice(0, 8);
 
   const openGalery = () => {
     const options = {
@@ -61,6 +42,13 @@ const Image_Add = () => {
         setChange(true);
       }
     });
+
+    const uploadImage = async () => {
+      setUrl_Image(nameImage as any);
+      const reference = storage().ref(`/imgProducts/${nameImage}`);
+      const pathToFile = image;
+      const task = reference.putFile(pathToFile as any);
+    };
   };
 
   return (
@@ -77,7 +65,7 @@ const Image_Add = () => {
         style={{borderWidth: 1, borderColor: 'black', width: 100, height: 100}}
       />
       <TouchableOpacity
-        onPress={add_Image}
+        onPress={Image_Add}
         style={{backgroundColor: 'red', width: 100, height: 50, marginTop: 10}}>
         <Text>add</Text>
       </TouchableOpacity>
