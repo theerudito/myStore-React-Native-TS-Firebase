@@ -7,14 +7,9 @@ export const productsSlice = createSlice({
     isLoading: true,
     clients: [],
     products: [],
+    details: [],
   },
   reducers: {
-    getProduct: (state, action) => {
-      state.product = action.payload;
-    },
-    createProducts: (state, action) => {
-      state.product = action.payload;
-    },
     loadingData: (state, action) => {
       state.isLoading = action.payload;
     },
@@ -24,13 +19,15 @@ export const productsSlice = createSlice({
     getProducts: (state, action) => {
       state.products = action.payload;
     },
+    getDetails: (state, action) => {
+      state.details = action.payload;
+    },
   },
 });
 
 export const {
-  getProduct,
   getProducts,
-  createProducts,
   loadingData,
   getClients,
+  getDetails,
 } = productsSlice.actions;

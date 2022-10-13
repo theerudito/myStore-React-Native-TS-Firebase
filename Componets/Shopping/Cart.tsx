@@ -33,9 +33,9 @@ const Cart = ({navigation}: any) => {
     datetails = [],
   } = useSelector((state: any) => state.cart);
   const [data_Payment, setData_Payment] = useState(paymetData);
-  const numeroFact = 1223;
+  const numDoc = 1223;
   const today = new Date();
-  const fecha = today.toLocaleDateString('en-US');
+  const dateDoc = today.toLocaleDateString('en-US');
   const {name, email, phone} = data_Payment;
   const dispatch = useDispatch();
 
@@ -54,8 +54,8 @@ const Cart = ({navigation}: any) => {
 
   const handleBuy = async () => {
     const data = Object.assign({
-      numeroFact,
-      fecha,
+      numDoc,
+      dateDoc,
       total,
       name,
       email,

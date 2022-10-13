@@ -1,17 +1,44 @@
 /* eslint-disable */
 import styled from 'styled-components/native';
-import React, {useState} from 'react';
-import {Clientes_Docu} from '../Helpers/InitialValues';
+import React, {useEffect} from 'react';
+
 import Componet_Seach from '../Header/Componet_Seach';
-import {FlatList, Text, View} from 'react-native';
-const image = require('../Images/Controls/reports.png');
+import {FlatList} from 'react-native';
+import firestore from '@react-native-firebase/firestore';
+import {useDispatch, useSelector} from 'react-redux';
+import {getDetails, loadingData} from '../Store/slices/products';
 
 const Reports = () => {
-  const [dataReports, setDataReports] = useState(Clientes_Docu);
+  const image = require('../Images/Controls/reports.png');
+  const {isLoading = true, details = []} = useSelector(
+    (state: any) => state.products,
+  );
+  const dispatch = useDispatch();
 
-  const vTotal = dataReports
-    .map(item => Number(item.total))
-    .reduce((a, b) => a + b, 0);
+  const readAllDetails = async () => {
+    dispatch(loadingData(true));
+    try {
+      const detailsCollectios = await firestore().collection('details').get();
+      const dataProducts = detailsCollectios.docs.map(doc => {
+        return {
+          id: doc.id,
+          ...doc.data(),
+        };
+      });
+      dispatch(getDetails(dataProducts));
+      dispatch(loadingData(false));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    readAllDetails();
+  }, []);
+
+  const buyTotal = details.reduce((acc: any, item: any) => {
+    return acc + item.data.total;
+  }, 0);
 
   return (
     <Container_Reports>
@@ -25,13 +52,15 @@ const Reports = () => {
       </Container_Header_Table>
 
       <FlatList
-        data={dataReports}
+        onRefresh={readAllDetails}
+        refreshing={isLoading}
+        data={details}
         keyExtractor={(item): any => item.id}
         renderItem={({item}) => <Table_Products item={item} />}
       />
 
       <Container_Total_Report>
-        <Total_Report>Total: $ {vTotal.toFixed(2)}</Total_Report>
+        <Total_Report>Total: ${buyTotal} </Total_Report>
       </Container_Total_Report>
     </Container_Reports>
   );
@@ -40,15 +69,15 @@ const Reports = () => {
 export default Reports;
 
 const Table_Products = ({item}: any) => {
-  const {name, date, total, doc} = item;
+  const {name, numDoc, total, dateDoc} = item.data;
 
   return (
     <Container_Table>
       <Container_Body_Data_Table>
         <Title_Body_Table>{name} </Title_Body_Table>
-        <Title_Body_Table>{doc} </Title_Body_Table>
-        <Title_Body_Table>{date} </Title_Body_Table>
-        <Title_Body_Table>{total} </Title_Body_Table>
+        <Title_Body_Table>{numDoc} </Title_Body_Table>
+        <Title_Body_Table>{dateDoc} </Title_Body_Table>
+        <Title_Body_Table>{total.toFixed(2)} </Title_Body_Table>
       </Container_Body_Data_Table>
     </Container_Table>
   );

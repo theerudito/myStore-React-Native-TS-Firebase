@@ -101,7 +101,7 @@ const Table_Products = ({
       <Container_Body_Data_Table>
         <Title_Body_Table>{stock} </Title_Body_Table>
         <Title_Body_Table>{name} </Title_Body_Table>
-        <Title_Body_Table>{price} </Title_Body_Table>
+        <Title_Body_Table>{Number(price).toFixed(2)} </Title_Body_Table>
 
         <Touch_Control onPress={handleEditProduct}>
           <Action_Button_Edit source={ico_Edit} />
