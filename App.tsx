@@ -1,7 +1,6 @@
 /* eslint-disable */
 
 import {Provider} from 'react-redux';
-
 import {store} from './Componets/Store';
 import {
   ContainerPrincipalPage,
