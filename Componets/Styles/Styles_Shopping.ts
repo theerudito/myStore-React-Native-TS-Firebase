@@ -36,19 +36,18 @@ export const ImageKart_Sopping = styled.Image`
 `;
 
 export const Container_Card_Shopping = styled.View`
-  width: 100%;
-  margin-top: 10px;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
+background-color: white;
+width: auto;
+
 `;
 
 export const Container_Card_Body_Shopping = styled.View`
   background-color: #202124;
-  width: 47%;
-  height: 270px;
+  width: 180px;
+  height: 260px;
   border-radius: 10px;
-  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
 `;
 
 export const Image_Card_Shopping = styled.Image`
@@ -65,6 +64,8 @@ export const Title_Product_Sopping = styled.Text`
   overflow: hidden;
   width: 90%;
   margin-top: -1px;
+
+
 `;
 export const Title_Mark_Sopping = styled(Title_Product_Sopping)``;
 export const Title_Description_Sopping = styled(Title_Product_Sopping)``;

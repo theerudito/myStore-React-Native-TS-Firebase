@@ -1,5 +1,5 @@
 /* eslint-disable */
-
+import styled from 'styled-components/native';
 import {useDispatch, useSelector} from 'react-redux';
 import React, {useEffect} from 'react';
 import {
@@ -33,9 +33,10 @@ import {ButtonWave, TopWave} from '../SVG/Waves';
 import {AddCart, addCounter, getTotal} from '../Store/slices/cart';
 
 import Componet_Seach from '../Header/Componet_Seach';
-import {FlatList} from 'react-native';
+import {FlatList, StyleSheet} from 'react-native';
 import Shooping_Card from './Shooping_Card';
 import firestore from '@react-native-firebase/firestore';
+
 
 export const Shopping = ({navigation}: any) => {
   const {isLoading = true, products = []} = useSelector(
@@ -96,6 +97,7 @@ export const Shopping = ({navigation}: any) => {
 
       <FlatList
         onRefresh={readAllProducts}
+        numColumns={2}
         refreshing={isLoading}
         data={products}
         keyExtractor={item => item.id}
