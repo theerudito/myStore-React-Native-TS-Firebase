@@ -1,62 +1,33 @@
 {
   "project_info": {
-    "project_number": "731457630829",
-    "project_id": "ecommerce-erudito",
-    "storage_bucket": "ecommerce-erudito.appspot.com"
+    "project_number": "601997066775",
+    "project_id": "mystore-byerudito",
+    "storage_bucket": "mystore-byerudito.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:731457630829:android:fba2363ad52f24da8e4564",
+        "mobilesdk_app_id": "1:601997066775:android:3f799b11041d7633b15252",
         "android_client_info": {
           "package_name": "com.mystore"
         }
       },
       "oauth_client": [
         {
-          "client_id": "731457630829-at3thido30jsui4e2q31dtjh4mkgjbjb.apps.googleusercontent.com",
+          "client_id": "601997066775-j3s5ohlo92agvg8dmlihbmms2i3duj00.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD8LoudwA5MWuzOBGRevnP1DJHWUS6Mt7Y"
+          "current_key": "AIzaSyCoULnLLVNLD2beDUinZWPqKFwS4mZF4Rs"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "731457630829-at3thido30jsui4e2q31dtjh4mkgjbjb.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:731457630829:android:977c4d834ad45ed88e4564",
-        "android_client_info": {
-          "package_name": "com.navigation"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "731457630829-at3thido30jsui4e2q31dtjh4mkgjbjb.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyD8LoudwA5MWuzOBGRevnP1DJHWUS6Mt7Y"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "731457630829-at3thido30jsui4e2q31dtjh4mkgjbjb.apps.googleusercontent.com",
+              "client_id": "601997066775-j3s5ohlo92agvg8dmlihbmms2i3duj00.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
